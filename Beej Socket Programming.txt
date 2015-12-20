@@ -1,0 +1,155 @@
+/* Self Notes */
+/*		Author: Aditya AS. 
+		Winter, 2015.
+		Learning Github, as a distraction.
+*/
+
+Chapter 2:
+Socket: A way to speak to other programs using standard unix file descriptors
+
+Everything in Unix is a file ====> that every I/O operation in Unix takes place using what is called a File Descriptor.
+
+File descriptor is just an integer associated with a file.
+
+---> socket() system call gives you the file descriptor for the socket. Communication is done using the send() and recv() calls.
+Of course, you can use read() and write() since you are operating on a file descriptor but send() and recv() give greater control
+over data transmission.
+
+There are all kinds of Sockets. Internet(DARPA) Sockets, Unix Sockets, X.25 sockets, and many others depending on the flavour of the unix you use.
+
+#################RAW SOCKETS are very powerful, read about them.
+
+We deal only with Internet Sockets.
+----------------------------------------------------------------------------------------------------
+There are two types of Internet Sockets that are of our concern:
+1. Stream Sockets. SOCK_STREAM.
+2. Datagram Sockets. SOCK_DGRAM.
+
+$$$$$$$$$$$$$
+
+Stream Sockets: Reliable two-way connected communication streams. telnet uses Stream Sockets, so does HTTP.
+How do stream sockets achieve this high level of data transmission quality? They use a protocol
+called “The Transmission Control Protocol”, otherwise known as “TCP” (see RFC 7936 for extremely
+detailed info on TCP.) TCP makes sure your data arrives sequentially and error-free. You may have heard
+“TCP” before as the better half of “TCP/IP” where “IP” stands for “Internet Protocol” (see RFC 7917.)
+IP deals primarily with Internet routing and is not generally responsible for data integrity.
+
+$$$$$$$$$$$$$$
+
+################################################################################################################################
+
+Datagram Sockets: These are called Connectionless Sockets.They are unreliable. If you send a datagram, it may arrive. It may arrive out of 
+order. But, if it arrives it will be error free. Datagram sockets also use IP for routing. but they don't use TCP, instead they use 
+UDP-User Datagram Protocol.
+
+Why are they connectionless?: Basically, its because you don't have to maintain an open connection as you do with stream sockets.
+You just build a packet, slap an IP header on it with destination information and send it off. No connection needed. They are generally used either when a TCP stack is unavailable or when a few dropped packets here and there don't mean the end of the world.
+tftp, dhcpd, multiplayer games, video conferencing etc using Datagram sockets.
+
+Applications like dhcpd and tftp have their own mechanisns of handling the missing packets problem. For every pakcet received an ACK packet is sent back to the sender to acknowledge that it has been received.
+
+Reasons for using unreliable protocol: Speed, Speed and Speed.
+
+################################################################################################################################
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Some Network Theory:
+
+Data Encapsulation: Basically, it says this: a packet is born, the packet is wrapped(“encapsulated”) in a header (and rarely a footer) by
+the first protocol (say, the TFTP protocol), then the whole thing (TFTP header included) is encapsulated again by the next protocol
+(say, UDP), then again by the next (IP), then again by the final protocol on the hardware (physical) layer (say, Ethernet).
+
+Layered Network Model: Different Layers...
+1. Application (Place where users interact with the network).
+2. Presentation.
+3. Session. 
+4. Transport. 
+5. Network. 
+6. Data Link.
+7. Physical (Hardware layer, serial and ethernet etc.)
+
+
+CHAPTER 3: IP Addresses, structs and Data Munging.
+
+a. IP Addresses Version 4 and 6:
+	IPv4: Addresses made up of 4 bytes. (Ex: 192.0.2.12). Only 4.3 billion IP addresses possible with ipv4. To overcome this 128 bit
+	ipv6 came into existance which has 2^96 times more ips than ipv4. Notation for denoting ipv4 and ipv6 is different.
+	::1 in ipv6 is equivalent to 127.0.0.1 in ipv4 i.e the local pc(localhost).
+	
+b. Subnets:
+	Sometimes easier to understand given ip as network and host portion for logical understanding. In 192.0.2.12, you might say that 
+	the first 3 bytes are the network portion and the last byte corr to host i.e. the given ip corr to host no: 12 on the network 
+	192.0.2.0 Depending on the number of the bits chosen to represent the host portion we have 3 classes. Class A, Class B, Class C which 
+	are given respectively 1, 2, and 3 bytes for network. The network portion of an IP is described by what is called a netmask.
+	i.e. Network portion = IP & Netmask.
+	
+c. Port Numbers:
+	Earlier we saw the Layered Network Model which had the Internet Layer (IP) split off from the Host-to-Host Transport
+	Layer (TCP and UDP). Besides the IP Address(used by IP layer) there is another address that is used by the TCP(stream sockets) and, 
+	coincidentally, by UDP(datagram sockets). It is the port number. It's a 16bit number that's like a local address for a connection.
+													#########Analogy###########
+								IP Address: Street address of a hotel. Port number: Room number.
+							
+	Common Port Numbers and their uses: 
+	HTTP : 80
+	Telnet : 23
+	SMTP : 25
+	DOOM(game) : 666
+	Ports < 1024 considered special and are used by OS.
+	
+d. Byte Order:
+	Network Byte Order is Big Endian. Normal Human wala thing.
+	But most hosts use Little Endian since it has its own benefits.
+	
+	******************************************** READ CAREFULLY ***************************************************
+	All righty. There are two types of numbers that you can convert: short (two bytes) and long (four bytes). These functions work
+	for the unsigned variations as well. Say you want to convert a short from Host Byte Order to Network Byte Order. Start with “h” 
+	for “host”, follow it with “to”, then “n” for “network”, and “s” for “short”: h-to-n-s, or htons() (read: “Host to Network Short”).
+	It's almost too easy...
+	You can use every combination of “n”, “h”, “s”, and “l” you want, not counting the really stupid ones. For example, there is NOT a
+	stolh() (“Short to Long Host”) function—not at this party, anyway.	But there are:
+	
+												htons() host to network short
+												htonl() host to network long
+												ntohs() network to host short
+												ntohl() network to host long
+	******************************************************************************************************************
+
+e. Structs: Finally, to the programming part. The one I've been waiting for so long, I can't even remember.
+------
+Socket Descriptor: 
+Type - int.
+------
+
+struct addrinfo - this struct is a more recent invention, and is used to prep the socket address structures for subsequent use.
+Also used in host name lookups, and service name lookups. That'll make more sense later when we get to actual usage. For now, remember 
+that it is one of those things you'll call when making a connection.
+
+										struct addrinfo {
+											int ai_flags; // AI_PASSIVE, AI_CANONNAME, etc.
+											int ai_family; // AF_INET, AF_INET6, AF_UNSPEC
+											int ai_socktype; // SOCK_STREAM, SOCK_DGRAM
+											int ai_protocol; // use 0 for "any"
+											size_t ai_addrlen; // size of ai_addr in bytes
+											struct sockaddr *ai_addr; // struct sockaddr_in or _in6
+											char *ai_canonname; // full canonical hostname
+											struct addrinfo *ai_next; // linked list, next node
+										};
+
+You'll load this struct up a bit, and then call getaddrinfo(). It'll return a pointer to a new linked
+list of these structures filled out with all the goodies you need.
+
+f. Private Networks and NAT(Network Address Translation)
+
+
+Chapter 4: Jumping from IPv4 to IPv6.
+Read the book. Its a page, that's all.
+
+Chapter 5: System Calls or Bust.
+
+										
+
+
+
+
