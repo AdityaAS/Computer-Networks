@@ -1,0 +1,6 @@
+I will from now on actively populate this repo with interesting, related content. I was unable to resume earlier because my laptop was down for almost a month.
+
+References:
+1.Beej's Guide to Socket Programming - Beej.
+2.Computer Networks: Top Down Approach - Kurose and Ross.
+3.Lab Sheets: BITS Pilani.
