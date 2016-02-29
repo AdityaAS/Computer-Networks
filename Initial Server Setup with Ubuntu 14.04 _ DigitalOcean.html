@@ -1,0 +1,3127 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04 -->
+<html class="wf-proximanova-n4-active wf-proximanova-i4-active wf-proximanova-n1-active wf-proximanova-n3-active wf-proximanova-n6-active wf-proximanova-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Initial Server Setup with Ubuntu 14.04 | DigitalOcean</title>
+
+<meta name="description" content="When you start a new server, there are a few steps that you should take every time to add some basic security and give you a solid foundation. In this guide, we&#39;ll walk you through the basic steps necessary to hit the ground running with Ubuntu 14.04.">
+<meta name="keywords" content="Getting Started Linux Basics">
+
+<meta name="og:title" content="Initial Server Setup with Ubuntu 14.04 | DigitalOcean">
+<meta name="og:description" content="When you start a new server, there are a few steps that you should take every time to add some basic security and give you a solid foundation. In this guide, we&#39;ll walk you through the basic steps necessary to hit the ground running with Ubuntu 14.04.">
+<meta name="og:site_name" content="DigitalOcean">
+<meta name="og:type" content="article">
+
+<meta name="twitter:site" content="DigitalOcean">
+<meta name="twitter:title" content="Initial Server Setup with Ubuntu 14.04 | DigitalOcean">
+<meta name="twitter:description" content="When you start a new server, there are a few steps that you should take every time to add some basic security and give you a solid foundation. In this guide, we&#39;ll walk you through the basic steps necessary to hit the ground running with Ubuntu 14.04.">
+<meta name="twitter:creator" content="DigitalOcean">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:url" content="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04">
+
+<meta property="og:image" content="https://www.digitalocean.com/assets/community/default_social_sharing-4c803c152c4cc1974dfac71a69fdab63.png">
+<meta name="twitter:image" content="https://www.digitalocean.com/assets/community/default_social_sharing-4c803c152c4cc1974dfac71a69fdab63.png">
+
+  <link rel="canonical" href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">
+
+        <link rel="alernate" hreflang="en" href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">
+      <link rel="alernate" hreflang="pt" href="https://www.digitalocean.com/community/tutorials/configuracao-inicial-de-servidor-com-ubuntu-14-04-pt">
+      <link rel="alernate" hreflang="ru" href="https://www.digitalocean.com/community/tutorials/c-ubuntu-14-04-ru">
+
+
+    <link rel="stylesheet" media="all" href="https://www.digitalocean.com/assets/community/application-c75a6112b5c31fd97d79f8f24a947e7e.css">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="QI0pH7XIXlR4VID3zjq7hkq++OU1BViC/F39KJuXmVEDXkCejOSJ2RFegLxLUcnkfx2MIPOj6WZgCwZoDdZDtw==">
+    <script src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/bat.js" async=""></script><script async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/fbds.js"></script><script type="text/javascript" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/conversion_async.js"></script><script type="text/javascript" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/analytics.js"></script><script src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/cb=gapi.loaded_0" async=""></script><script async="" id="hn-button.js" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/hn-button.js"></script><script type="text/javascript" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/plusone.js" gapi_processed="true"></script><script id="facebook-jssdk" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/all.js"></script><script id="twitter-wjs" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/widgets.js"></script><script type="text/javascript" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/track.js" id="cio-tracker" data-site-id="e7cc779295927747a7c2"></script><script async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/gtm.js"></script><script type="text/javascript" async="" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/analytics.min.js"></script><script type="text/javascript" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/njm7orv.js"></script><style type="text/css"></style>
+    <style type="text/css">.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><link rel="stylesheet" href="https://use.typekit.net/c/c2e19f/1w;proxima-nova,2,2clzCG:W:i4,2clzCK:W:n1,2clzC9:W:n3,2clzCF:W:n4,2clzCH:W:n6,2clzC5:W:n7/l?3bb2a6e53c9684ffdc9a9ef41e5b2a629733fa03f01d82f7f88438224fdc49c94770f7314ee20b594bfd667e7adf6430e6fbecfcf7a4fe39515355ce333782e90eaf61ea39ab69145df9acffbbb673f3f67f510f1caa19fde5c4792f140f0696250bef663a3b17703361be0a9415c6a72b58d98648cf9bcbfd1e44c32567f9666b1c308487a77810287a966185ab50da4228907d0c8ab671751e65df35258a55f924f042dd0b8fa1c2355c46ef6e2fee59accd0d15d53a460fbefab4c09c4b845e92de3d8e017ee5adeb7de260ab4bad3e6390b45ce59fcdf4aaabf114cd9db2d5ca3f84596b5682eb3c4d3f55ce1fc576886704d2cbe5920bcb123486a60ddee6aa5506c223c1e70db6f060f0288893b9ae2f65935fbc6bab3193eeeeb669414c57001acfc7c20820249307e12304e2e6fad94c1757a4aee7320abd4ff9791bd35b1bb0e74dc58fbf1d4a372e9fea0da9d3a0d669c552f6b9bc6b80bbc98f8913154737e2e79c9190ee230673989614f0aeaa755c3fa55829fe8aa53f021f8758693c48e9fe62e73b56a901889cbff3ded6a0edd48167e90cf5d70bd878a647bd9c6d317e40534c" media="all"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/701281621.js"></script>
+    <script type="text/javascript">
+      if(window.analytics=window.analytics||[],window.analytics.included)window.console&&console.error&&console.error("analytics.js included twice");else{window.analytics.included=!0,window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(a){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(a),window.analytics.push(n),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(a){var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("puo3uv968t")}
+      window.analytics.page();
+    </script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.digitalocean.com/community/tutorials/feed">
+    <script src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/application-9bb6ea14934f161c4dc81c7ef46af3ec.js"></script>
+  <style>.fluidvids {width: 100%; max-width: 100%; position: relative;}.fluidvids-item {position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;}</style><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script><link rel="stylesheet" type="text/css" href="chrome-extension://neomigpibafpboiknmijddgnncengfnm/css/divpop.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+  <body class="tutorials-controller tutorial-single" data-env="production" ,="" data-prefix="/community" data-user-id="" data-facebook-app-id="694818843983011">
+    <script>
+//<![CDATA[
+
+//]]>
+</script>
+<!-- Google Tag Manager -->
+<noscript>&lt;iframe src="//www.googletagmanager.com/ns.html?id=GTM-KHWBBT"
+height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHWBBT');</script>
+<!-- End Google Tag Manager -->
+    
+
+    <div class="outside_viewport">
+        <div class="table-of-contents  tocify sticky" style="top: 72px;"><ul id="tocify-header0" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-one-—-root-login"><a>Step One — Root Login</a></li></ul><ul id="tocify-header1" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-two-—-create-a-new-user"><a>Step Two — Create a New User</a></li></ul><ul id="tocify-header2" class="tocify-header" style="display: none;"><li class="tocify-item tocify-focus" data-unique="step-three-—-root-privileges"><a>Step Three — Root Privileges</a></li></ul><ul id="tocify-header3" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-four-—-add-public-key-authentication-(recommended)"><a>Step Four — Add Public Key Authentication (Recommended)</a></li></ul><ul id="tocify-header4" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-five-—-configure-ssh-daemon"><a>Step Five — Configure SSH Daemon</a></li></ul><ul id="tocify-header5" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-six-reload-ssh"><a>Step Six -- Reload SSH</a></li></ul><ul id="tocify-header6" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="where-to-go-from-here"><a>Where To Go From Here?</a></li></ul></div>
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Share</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="social-sharing social-sharing-container">
+            <ul class="bottom ">
+              <li class="shareBtn" id="sbTwitter">
+                <a href="http://twitter.com/share?text=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=twshare" class="share-icon share-popup" title="Share on Twitter">
+                  <span class="sIcon icon-bird"></span>
+                </a>
+                
+                <a href="http://twitter.com/share?text=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=twshare" class="share-link share-popup" title="Share on Twitter">
+                  Twitter
+                </a>
+                
+              </li>
+
+              <li class="shareBtn" id="sbFacebook">
+                <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  <span class="sIcon icon-facebook-B"></span>
+                </a>
+
+                <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  Facebook
+                </a>
+              </li>
+              <li class="shareBtn" id="sbGoogle">
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                  <span class="sIcon icon-google-plus-B"></span>
+                </a>
+
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                  Google+
+                </a>
+              </li>
+              <li class="shareBtn" id="sbYC">
+                <a href="https://news.ycombinator.com/submitlink?t=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&u=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=hnshare" class="share-icon share-popup " target="_blank" title="Submit to Hacker News">
+                  <span class="sIcon icon-hacker-news"></span>
+                </a>
+
+                <a href="https://news.ycombinator.com/submitlink?t=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&u=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                  Hacker News
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="translation-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Language</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="content-translations">
+            <div class="current-language">
+              <ul class="languages medium">
+                <li class="current">
+                  <span class="language "></span>
+                  <span class="icon icon-check-light"></span>
+                  English
+                </li>
+
+
+                    <li>
+                      <a class="edit" title="Portuguese" href="https://www.digitalocean.com/community/tutorials/configuracao-inicial-de-servidor-com-ubuntu-14-04-pt">
+                        <span class="language pt"></span>
+                        Portuguese
+</a>                    </li>
+                    <li>
+                      <a class="edit" title="Russian" href="https://www.digitalocean.com/community/tutorials/c-ubuntu-14-04-ru">
+                        <span class="language ru"></span>
+                        Russian
+</a>                    </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="contents-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Contents</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="table-of-contents-modal open tocify"><ul id="tocify-header0" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-one-—-root-login"><a>Step One — Root Login</a></li></ul><ul id="tocify-header1" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-two-—-create-a-new-user"><a>Step Two — Create a New User</a></li></ul><ul id="tocify-header2" class="tocify-header" style="display: none;"><li class="tocify-item tocify-focus" data-unique="step-three-—-root-privileges"><a>Step Three — Root Privileges</a></li></ul><ul id="tocify-header3" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-four-—-add-public-key-authentication-(recommended)"><a>Step Four — Add Public Key Authentication (Recommended)</a></li></ul><ul id="tocify-header4" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-five-—-configure-ssh-daemon"><a>Step Five — Configure SSH Daemon</a></li></ul><ul id="tocify-header5" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="step-six-reload-ssh"><a>Step Six -- Reload SSH</a></li></ul><ul id="tocify-header6" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="where-to-go-from-here"><a>Where To Go From Here?</a></li></ul></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Share</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="social-sharing social-sharing-container">
+            <ul class="top ">
+              <li class="shareBtn" id="sbTwitter">
+                <a href="http://twitter.com/share?text=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=twshare" class="share-icon share-popup" title="Share on Twitter">
+                  <span class="sIcon icon-bird"></span>
+                </a>
+                
+                <a href="http://twitter.com/share?text=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=twshare" class="share-link share-popup" title="Share on Twitter">
+                  Twitter
+                </a>
+                
+              </li>
+
+              <li class="shareBtn" id="sbFacebook">
+                <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  <span class="sIcon icon-facebook-B"></span>
+                </a>
+
+                <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  Facebook
+                </a>
+              </li>
+              <li class="shareBtn" id="sbGoogle">
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                  <span class="sIcon icon-google-plus-B"></span>
+                </a>
+
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                  Google+
+                </a>
+              </li>
+              <li class="shareBtn" id="sbYC">
+                <a href="https://news.ycombinator.com/submitlink?t=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&u=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=hnshare" class="share-icon share-popup " target="_blank" title="Submit to Hacker News">
+                  <span class="sIcon icon-hacker-news"></span>
+                </a>
+
+                <a href="https://news.ycombinator.com/submitlink?t=Initial%20Server%20Setup%20with%20Ubuntu%2014.04&u=https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?utm_content=initial-server-setup-with-ubuntu-14-04&utm_medium=community&utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                  Hacker News
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+      <div class="mobile-nav">
+  
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+    
+  <a class="close-panel icon-close" href="javascript:void(0);"></a>
+
+  <form class="mobile-search" action="https://www.digitalocean.com/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+    <span class="icon icon-search-thin"></span>
+    <input type="text" name="q" id="q" placeholder="Search">
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form>
+  
+<nav>
+
+  <ul>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="http://do.co/DOcommunity" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+  
+</div>
+      
+      <header>
+  <div class="flash-container"></div>
+
+  <div class="main-menu-container">
+    <div class="wrapper">
+      <div class="logo">
+        <a class="" href="https://www.digitalocean.com/">
+          <span class="icon icon-logo"></span>
+</a>
+        <a class="" href="https://www.digitalocean.com/community">
+          <span class="logo-community-text">Community</span>
+</a>      </div>
+
+      <a class="mobile-nav-toggle icon-menu-thin" data-role="left">
+        <span>Menu</span>
+      </a>
+
+      
+<nav>
+
+  <ul>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="http://do.co/DOcommunity" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+
+      
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+      <div class="header-search open">
+  <form action="https://www.digitalocean.com/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+    <span class="icon icon-search-thin"></span>
+    <input type="text" name="q" id="q" placeholder="Search" autocomplete="off" spellcheck="off" class="header-search-input" data-algolia-application-id="6ZHEUVKJ88" data-algolia-api-key="c5470567eae7fa1177d43222e18ba086">
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form></div>
+
+<div class="search-results-dropdown dropdown" data-root-path="https://www.digitalocean.com/community">
+  <div class="container">
+    <div class="header-search-results-list"></div>
+
+    <div id="btn-wrap">
+      <a class="more-search-results" data-search-path="/community/search" href="https://www.digitalocean.com/community/search">
+        <span class="icon-mag"></span>
+        View All Results
+</a>    </div>
+  </div>
+</div>
+
+<script type="text/template" id="autocomplete-hits-template">
+  <div class="inner-search">
+    <ul>
+        {{#hits}}
+          <li>
+            <span class='icon icon-{{type}}'></span>
+            <a href='{{url}}'>{{{_highlightResult.title.value}}}</a>
+          </li>
+        {{/hits}}
+    </ul>
+  </div>
+</script>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    
+  </div>
+</header>
+
+
+      
+
+      <div class="wrapper layout-wrapper">
+
+        
+
+
+
+
+
+
+<div class="section-content section-content-growable content">
+  <div class="postable-info-bar-container">
+  <div class="postable-info-bar">
+    <div class="left-section">
+        <div class="tutorial-author-avatar">
+          <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+        </div>
+
+        <div class="author-and-date">
+          <div class="tutorial-author">
+            <div class="by">By: </div>
+            <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a>
+          </div>
+        </div>
+
+      <div class="upvotes upvoted tutorial-upvote"><form data-upvotable="tutorial_1134" data-upvotable-type="tutorial" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=1134&upvote%5Bupvotable_type%5D=Tutorial" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="QI0pH7XIXlR4VID3zjq7hkq++OU1BViC/F39KJuXmVEDXkCejOSJ2RFegLxLUcnkfx2MIPOj6WZgCwZoDdZDtw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="" title="Do you find this tutorial helpful? Show the author by Hearting it!" data-placement="bottom"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">587</div></div>
+
+        <div class="tutorial-comments-count">
+          <span class="icon icon-new-comment"></span>
+          136
+        </div>
+
+
+    </div>
+
+    <div class="right-section">
+      <div class="section-item social-sharing-item">
+        <div class="sharing">
+  <a class="share-button" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#" data-toggle="modal" data-target="#share-modal">
+    <span class="icon icon-share-square"></span>
+    <span class="share-button-text">
+      Share
+    </span>
+  </a>
+</div>
+
+
+      </div>
+
+          <div class="section-item section-item-translations">
+            <div class="content-translations">
+  <div class="current-language">
+    <a title="English" data-toggle="modal" data-target="#translation-modal" href="javascript:void(0);">
+      <span class="language "></span>
+      <span class="icon icon-arrow-up"></span>
+      <span class="icon icon-arrow-down"></span>
+</a>  </div>
+</div>
+
+
+
+          </div>
+        <div class="section-item table-of-contents-triggers"><div class="toc-trigger ">
+  <a href="javascript:void(0);">
+    <span class="title">Contents</span>
+    <span class="icon icon-close-light"></span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+
+<div class="toc-trigger-mobile" data-toggle="modal" data-target="#contents-modal">
+  <a href="javascript:void(0);">
+    <span class="title">Contents</span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="container">
+
+      <div class="info-cta">
+    <a class="icon-close-light" href="javascript:void();"></a>
+    We hope you find this tutorial helpful. In addition to guides like this one, we provide simple cloud infrastructure for developers. <a href="https://www.digitalocean.com/?utm_medium=community&utm_source=community_gencta&utm_campaign=needaserver&utm_content=initial-server-setup-with-ubuntu-14-04">
+        Learn more →
+</a>  </div>
+
+  
+    <h1 class="content-title">Initial Server Setup with Ubuntu 14.04</h1>
+
+    <span class="meta-section tags">
+      <span class="meta-value"><span class="tutorial-date">Apr 17, 2014</span> <span class="hashtag-icon"></span> <a class="" href="https://www.digitalocean.com/community/tags/getting-started?type=tutorials">Getting Started</a>, <a class="" href="https://www.digitalocean.com/community/tags/linux-basics?type=tutorials">Linux Basics</a> <a class="" href="https://www.digitalocean.com/community/tags/ubuntu?type=tutorials">Ubuntu</a></span>
+    </span>
+  </div>
+
+  <div class="container">
+      <div class="tutorial-series-container collapsed">
+    <div class="section-content">
+
+      <h2 class="tutorial-series-heading">Tutorial Series</h2>
+
+            <div class="tutorial-series-toggle">
+              This tutorial is part 2 of 3 in the series:
+              <a data-reveal="fast" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#tutorial_series_32">New Ubuntu 14.04 Server Checklist</a>
+            </div>
+
+          <div id="tutorial_series_32" class="tutorial-series hidden">
+            <a class="icon-close" href="javascript:void(0);"></a>
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/new-ubuntu-14-04-server-checklist">New Ubuntu 14.04 Server Checklist</a></h3>
+
+              <div class="description">
+                When creating a new Ubuntu 14.04 server, there are some basic steps that you should take to ensure that your server is secure and configured properly. The tutorial series covers connecting to your server and general security best practices, and provides links to articles that will help you start running your own web server or application.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh">How To Connect To Your Droplet with SSH</a></h2>
+
+      <div class="feedable-date">November  4, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          129
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          20
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/manicas">Mitchell Anicas</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="active">
+      <h2><a href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">Initial Server Setup with Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 17, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          615
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          142
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers">Additional Recommended Steps for New Ubuntu 14.04 Servers</a></h2>
+
+      <div class="feedable-date">November  3, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          280
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          35
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+  <a class="prev-tutorial" href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh">Previous Tutorial</a>
+  <a class="next-tutorial" href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers">Next Tutorial</a>
+
+          </div>
+            <div class="tutorial-series-toggle">
+              This tutorial is part 1 of 4 in the series:
+              <a data-reveal="fast" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#tutorial_series_44">Introduction to Nginx and LEMP on Ubuntu 14.04</a>
+            </div>
+
+          <div id="tutorial_series_44" class="tutorial-series hidden">
+            <a class="icon-close" href="javascript:void(0);"></a>
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/introduction-to-nginx-and-lemp-on-ubuntu-14-04">Introduction to Nginx and LEMP on Ubuntu 14.04</a></h3>
+
+              <div class="description">
+                This tutorial series helps sysadmins set up a new web server using the LEMP stack, focusing on Nginx setup with virtual blocks. This will let you serve multiple websites from one Droplet.
+
+You'll start by setting up your Ubuntu 14.04 server and end with multiple virtual blocks set up for your websites. An Nginx configuration guide is included at the end for reference.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="active">
+      <h2><a href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">Initial Server Setup with Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 17, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          615
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          142
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          201
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          120
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">How To Set Up Nginx Server Blocks (Virtual Hosts) on Ubuntu 14.04 LTS</a></h2>
+
+      <div class="feedable-date">April 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          193
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          75
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts">Understanding the Nginx Configuration File Structure and Configuration Contexts</a></h2>
+
+      <div class="feedable-date">November 18, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          63
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          2
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+  
+  <a class="next-tutorial" href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04">Next Tutorial</a>
+
+          </div>
+    </div>
+  </div>
+
+  </div>
+
+    <div class="content-body tutorial-content tutorial-content-legacy" data-growable-markdown="">
+      <h3 id="introduction">Introduction</h3>
+
+<p>When you first create a new Ubuntu 14.04 server, there are a few configuration steps that you should take early on as part of the basic setup.  This will increase the security and usability of your server and will give you a solid foundation for subsequent actions.</p>
+
+<div name="step-one-—-root-login" data-unique="step-one-—-root-login"></div><h2 id="step-one-—-root-login">Step One — Root Login</h2>
+
+<p>To log into your server, you will need to know your server's public IP address and the password for the "root" user's account. If you have not already logged into your server, you may want to follow the first tutorial in this series, <a href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh">How to Connect to Your Droplet with SSH</a>, which covers this process in detail.</p>
+
+<p>If you are not already connected to your server, go ahead and log in as the <code>root</code> user using the following command (substitute the highlighted word with your server's public IP address):</p>
+<pre class="code-pre custom_prefix"><code langs=""><ul class="prefixed"><li class="line" prefix="local$">ssh root@<span class="highlight">SERVER_IP_ADDRESS</span>
+</li></ul></code></pre>
+<p>Complete the login process by accepting the warning about host authenticity, if it appears, then providing your root authentication (password or private key). If it is your first time logging into the server, with a password, you will also be prompted to change the root password.</p>
+
+<h3 id="about-root">About Root</h3>
+
+<p>The root user is the administrative user in a Linux environment that has very broad privileges.  Because of the heightened privileges of the root account, you are actually <em>discouraged</em> from using it on a regular basis.  This is because part of the power inherent with the root account is the ability to make very destructive changes, even by accident.</p>
+
+<p>The next step is to set up an alternative user account with a reduced scope of influence for day-to-day work.  We'll teach you how to gain increased privileges during the times when you need them.</p>
+
+<div name="step-two-—-create-a-new-user" data-unique="step-two-—-create-a-new-user"></div><h2 id="step-two-—-create-a-new-user">Step Two — Create a New User</h2>
+
+<p>Once you are logged in as <code>root</code>, we're prepared to add the new user account that we will use to log in from now on.</p>
+
+<p>This example creates a new user called "demo", but you should replace it with a user name that you like:</p>
+<pre class="code-pre super_user"><code langs=""><ul class="prefixed"><li class="line" prefix="#">adduser <span class="highlight">demo</span>
+</li></ul></code></pre>
+<p>You will be asked a few questions, starting with the account password. </p>
+
+<p>Enter a strong password and, optionally, fill in any of the additional information if you would like.  This is not required and you can just hit "ENTER" in any field you wish to skip.</p>
+
+<div name="step-three-—-root-privileges" data-unique="step-three-—-root-privileges"></div><h2 id="step-three-—-root-privileges">Step Three — Root Privileges</h2>
+
+<p>Now, we have a new user account with regular account privileges.  However, we may sometimes need to do administrative tasks.</p>
+
+<p>To avoid having to log out of our normal user and log back in as the root account, we can set up what is known as "super user" or root privileges for our normal account.  This will allow our normal user to run commands with administrative privileges by putting the word <code>sudo</code> before each command. </p>
+
+<p>To add these privileges to our new user, we need to add the new user to the "sudo" group. By default, on Ubuntu 14.04, users who belong to the "sudo" group are allowed to use the <code>sudo</code> command.</p>
+
+<p>As <code>root</code>, run this command to add your new user to the <em>sudo</em> group (substitute the highlighted word with your new user):</p>
+<pre class="code-pre super_user"><code langs=""><ul class="prefixed"><li class="line" prefix="#">gpasswd -a <span class="highlight">demo</span> sudo
+</li></ul></code></pre>
+<p>Now your user can run commands with super user privileges! For more information about how this works, check out <a href="https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos">this sudoers tutorial</a>.</p>
+
+<div name="step-four-—-add-public-key-authentication-(recommended)" data-unique="step-four-—-add-public-key-authentication-(recommended)"></div><h2 id="step-four-—-add-public-key-authentication-recommended">Step Four — Add Public Key Authentication (Recommended)</h2>
+
+<p>The next step in securing your server is to set up public key authentication for your new user. Setting this up will increase the security of your server by requiring a private SSH key to log in.</p>
+
+<h3 id="generate-a-key-pair">Generate a Key Pair</h3>
+
+<p>If you do not already have an SSH key pair, which consists of a public and private key, you need to generate one. If you already have a key that you want to use, skip to the <em>Copy the Public Key</em> step.</p>
+
+<p>To generate a new key pair, enter the following command at the terminal of your <strong>local machine</strong> (ie. your computer):</p>
+<pre class="code-pre custom_prefix"><code langs=""><ul class="prefixed"><li class="line" prefix="local$">ssh-keygen
+</li></ul></code></pre>
+<p>Assuming your local user is called "localuser", you will see output that looks like the following:</p>
+<pre class="code-pre "><code langs=""><div class="secondary-code-label " title="ssh-keygen output">ssh-keygen output</div>Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/<span class="highlight">localuser</span>/.ssh/id_rsa):
+</code></pre>
+<p>Hit return to accept this file name and path (or enter a new name).</p>
+
+<p>Next, you will be prompted for a passphrase to secure the key with. You may either enter a passphrase or leave the passphrase blank.</p>
+
+<p><strong>Note:</strong> If you leave the passphrase blank, you will be able to use the private key for authentication without entering a passphrase. If you enter a passphrase, you will need both the private key <em>and</em> the passphrase to log in. Securing your keys with passphrases is more secure, but both methods have their uses and are more secure than basic password authentication.</p>
+
+<p>This generates a private key, <code>id_rsa</code>, and a public key, <code>id_rsa.pub</code>, in the <code>.ssh</code> directory of the <em>localuser</em>'s home directory. Remember that the private key should not be shared with anyone who should not have access to your servers!</p>
+
+<h3 id="copy-the-public-key">Copy the Public Key</h3>
+
+<p>After generating an SSH key pair, you will want to copy your public key to your new server. We will cover two easy ways to do this.</p>
+
+<h3 id="option-1-use-ssh-copy-id">Option 1: Use ssh-copy-id</h3>
+
+<p>If your local machine has the <code>ssh-copy-id</code> script installed, you can use it to install your public key to any user that you have login credentials for.</p>
+
+<p>Run the <code>ssh-copy-id</code> script by specifying the user and IP address of the server that you want to install the key on, like this:</p>
+<pre class="code-pre custom_prefix"><code langs=""><ul class="prefixed"><li class="line" prefix="local$">ssh-copy-id <span class="highlight">demo</span>@<span class="highlight">SERVER_IP_ADDRESS</span>
+</li></ul></code></pre>
+<p>After providing your password at the prompt, your public key will be added to the remote user's <code>.ssh/authorized_keys</code> file. The corresponding private key can now be used to log into the server.</p>
+
+<h3 id="option-2-manually-install-the-key">Option 2: Manually Install the Key</h3>
+
+<p>Assuming you generated an SSH key pair using the previous step, use the following command at the terminal of your <strong>local machine</strong> to print your public key (<code>id_rsa.pub</code>):</p>
+<pre class="code-pre custom_prefix"><code langs=""><ul class="prefixed"><li class="line" prefix="local$">cat ~/.ssh/id_rsa.pub
+</li></ul></code></pre>
+<p>This should print your public SSH key, which should look something like the following:</p>
+<pre class="code-pre "><code langs=""><div class="secondary-code-label " title="id_rsa.pub contents">id_rsa.pub contents</div>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBGTO0tsVejssuaYR5R3Y/i73SppJAhme1dH7W2c47d4gOqB4izP0+fRLfvbz/tnXFz4iOP/H6eCV05hqUhF+KYRxt9Y8tVMrpDZR2l75o6+xSbUOMu6xN+uVF0T9XzKcxmzTmnV7Na5up3QM3DoSRYX/EP3utr2+zAqpJIfKPLdA74w7g56oYWI9blpnpzxkEd3edVJOivUkpZ4JoenWManvIaSdMTJXMy3MtlQhva+j9CgguyVbUkdzK9KKEuah+pFZvaugtebsU+bllPTB0nlXGIJk98Ie9ZtxuY3nCKneB+KjKiXrAvXUPCI9mWkYS/1rggpFmu3HbXBnWSUdf localuser@machine.local
+</code></pre>
+<p>Select the public key, and copy it to your clipboard.</p>
+
+<h4 id="add-public-key-to-new-remote-user">Add Public Key to New Remote User</h4>
+
+<p>To enable the use of SSH key to authenticate as the new remote user, you must add the public key to a special file in the user's home directory.</p>
+
+<p><strong>On the server</strong>, as the <code>root</code> user, enter the following command to switch to the new user (substitute your own user name):</p>
+<pre class="code-pre super_user"><code langs=""><ul class="prefixed"><li class="line" prefix="#">su - <span class="highlight">demo</span>
+</li></ul></code></pre>
+<p>Now you will be in your new user's home directory.</p>
+
+<p>Create a new directory called <code>.ssh</code> and restrict its permissions with the following commands:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">mkdir .ssh
+</li><li class="line" prefix="$">chmod 700 .ssh
+</li></ul></code></pre>
+<p>Now open a file in <em>.ssh</em> called <code>authorized_keys</code> with a text editor. We will use <em>nano</em> to edit the file:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">nano .ssh/authorized_keys
+</li></ul></code></pre>
+<p>Now insert your public key (which should be in your clipboard) by pasting it into the editor.</p>
+
+<p>Hit <code>CTRL-X</code> to exit the file, then <code>Y</code> to save the changes that you made, then <code>ENTER</code> to confirm the file name.</p>
+
+<p>Now restrict the permissions of the <em>authorized_keys</em> file with this command:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">chmod 600 .ssh/authorized_keys
+</li></ul></code></pre>
+<p>Type this command <em>once</em> to return to the <code>root</code> user:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">exit
+</li></ul></code></pre>
+<p>Now you may SSH login as your new user, using the private key as authentication.</p>
+
+<p>To read more about how key authentication works, read this tutorial: <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server">How To Configure SSH Key-Based Authentication on a Linux Server</a>.</p>
+
+<div name="step-five-—-configure-ssh-daemon" data-unique="step-five-—-configure-ssh-daemon"></div><h2 id="step-five-—-configure-ssh-daemon">Step Five — Configure SSH Daemon</h2>
+
+<p>Now that we have our new account, we can secure our server a little bit by modifying its SSH daemon configuration (the program that allows us to log in remotely) to disallow remote SSH access to the <strong>root</strong> account.</p>
+
+<p>Begin by opening the configuration file with your text editor as root:</p>
+<pre class="code-pre super_user"><code langs=""><ul class="prefixed"><li class="line" prefix="#">nano /etc/ssh/sshd_config
+</li></ul></code></pre>
+<p>Next, we need to find the line that looks like this:</p>
+<div class="code-label " title="/etc/ssh/sshd_config (before)">/etc/ssh/sshd_config (before)</div><pre class="code-pre "><code langs="">PermitRootLogin yes
+</code></pre>
+<p>Here, we have the option to disable root login through SSH.  This is generally a more secure setting since we can now access our server through our normal user account and escalate privileges when necessary.</p>
+
+<p>Modify this line to "no" like this to disable root login:</p>
+<div class="code-label " title="/etc/ssh/sshd_config (after)">/etc/ssh/sshd_config (after)</div><pre class="code-pre "><code langs="">PermitRootLogin <span class="highlight">no</span>
+</code></pre>
+<p>Disabling remote root login is highly recommended on every server!</p>
+
+<p>When you are finished making your changes, save and close the file using the method we went over earlier (<code>CTRL-X</code>, then <code>Y</code>, then <code>ENTER</code>).</p>
+
+<div name="step-six-reload-ssh" data-unique="step-six-reload-ssh"></div><h2 id="step-six-reload-ssh">Step Six -- Reload SSH</h2>
+
+<p>Now that we have made our change, we need to restart the SSH service so that it will use our new configuration.</p>
+
+<p>Type this to restart SSH:</p>
+<pre class="code-pre super_user"><code langs=""><ul class="prefixed"><li class="line" prefix="#">service ssh restart
+</li></ul></code></pre>
+<p>Now, before we log out of the server, we should <strong>test</strong> our new configuration.  We do not want to disconnect until we can confirm that new connections can be established successfully.</p>
+
+<p>Open a <strong>new</strong> terminal window on your local machine.  In the new window, we need to begin a new connection to our server.  This time, instead of using the root account, we want to use the new account that we created.</p>
+
+<p>For the server that we showed you how to configure above, you would connect using this command.  Substitute your own user name and server IP address where appropriate:</p>
+<pre class="code-pre custom_prefix"><code langs=""><ul class="prefixed"><li class="line" prefix="local$">ssh <span class="highlight">demo</span>@<span class="highlight">SERVER_IP_ADDRESS</span>
+</li></ul></code></pre>
+<p><strong>Note:</strong> If you are using PuTTY to connect to your servers, be sure to update the session's <em>port</em> number to match your server's current configuration.</p>
+
+<p>You will be prompted for the new user's password that you configured.  After that, you will be logged in as your new user.</p>
+
+<p>Remember, if you need to run a command with root privileges, type "sudo" before it like this:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">sudo <span class="highlight">command_to_run</span>
+</li></ul></code></pre>
+<p>If all is well, you can exit your sessions by typing:</p>
+<pre class="code-pre command"><code langs=""><ul class="prefixed"><li class="line" prefix="$">exit
+</li></ul></code></pre>
+<div name="where-to-go-from-here" data-unique="where-to-go-from-here"></div><h2 id="where-to-go-from-here">Where To Go From Here?</h2>
+
+<p>At this point, you have a solid foundation for your server. You can install any of the software you need on your server now.</p>
+
+<p>If you are not sure what you want to do with your server, check out the next tutorial in this series for <a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers">Additional Recommended Steps for New Ubuntu 14.04 Servers</a>. It covers things like basic firewall settings, NTP, and swap files. It also provides links to tutorials that show you how to set up common web applications.  You may also want to check out <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-fail2ban-on-ubuntu-14-04">this guide</a> to learn how to enable <code>fail2ban</code> to reduce the effectiveness of brute force attacks.</p>
+
+<p>If you just want to explore, take a look at the rest of our <a href="https://digitalocean.com/community/articles">community</a> to find more tutorials.  Some popular ideas are configuring a <a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04">LAMP stack</a> or a <a href="https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04">LEMP stack</a>, which will<br>
+allow you to host websites.</p>
+
+    </div>
+</div>
+
+<div class="tutorial-footer">
+  <div class="tutorial-footer-details">
+  <div class="section-content tutorial-public-actions">
+    <div class="share-subscribe-actions">
+      <div class="upvotes upvoted tutorial-upvote large-upvotes"><form data-upvotable="tutorial_1134" data-upvotable-type="tutorial" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=1134&upvote%5Bupvotable_type%5D=Tutorial" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="QI0pH7XIXlR4VID3zjq7hkq++OU1BViC/F39KJuXmVEDXkCejOSJ2RFegLxLUcnkfx2MIPOj6WZgCwZoDdZDtw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="" title="Do you find this tutorial helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">587</div></div>
+      <span class="meta-section opt-in-switch off signed-out-subscribe">
+  <span class="meta-label subscribe-label">
+    <span class="subscription-label subscribe">Subscribe</span>
+    <span class="subscription-label subscribed">Subscribed</span>
+  </span>
+  <span class="meta-value"><a data-toggle="modal" data-target="#sign-in-modal" class="mini-switch-container" href="javascript:void(0);"><div class="mini-switch off signed-out-subscribe"><div class="switch-handle"></div></div></a></span>
+</span>
+
+      <div class="sharing">
+  <a class="share-button" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#" data-toggle="modal" data-target="#share-modal">
+    <span class="icon icon-share-square"></span>
+    <span class="share-button-text">
+      Share
+    </span>
+  </a>
+</div>
+
+
+    </div>
+  </div>
+
+  <div class="section-content tutorial-contributors one">
+      <div class="tutorial-footer-user">
+        <div class="tutorial-footer-user-avatar-container">
+          <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+        </div>
+        <div class="user-info">
+          <div class="tutorial-user-type">Author:</div>
+          <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+    <div class="tutorial-series-container ">
+    <div class="section-content">
+
+      <h2 class="tutorial-series-heading">Tutorial Series</h2>
+
+
+          <div id="tutorial_series_32" class="tutorial-series ">
+            
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/new-ubuntu-14-04-server-checklist">New Ubuntu 14.04 Server Checklist</a></h3>
+
+              <div class="description">
+                When creating a new Ubuntu 14.04 server, there are some basic steps that you should take to ensure that your server is secure and configured properly. The tutorial series covers connecting to your server and general security best practices, and provides links to articles that will help you start running your own web server or application.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh">How To Connect To Your Droplet with SSH</a></h2>
+
+      <div class="feedable-date">November  4, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          129
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          20
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/manicas">Mitchell Anicas</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="active">
+      <h2><a href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">Initial Server Setup with Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 17, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          615
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          142
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers">Additional Recommended Steps for New Ubuntu 14.04 Servers</a></h2>
+
+      <div class="feedable-date">November  3, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          280
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          35
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+
+          </div>
+
+          <div id="tutorial_series_44" class="tutorial-series ">
+            
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/introduction-to-nginx-and-lemp-on-ubuntu-14-04">Introduction to Nginx and LEMP on Ubuntu 14.04</a></h3>
+
+              <div class="description">
+                This tutorial series helps sysadmins set up a new web server using the LEMP stack, focusing on Nginx setup with virtual blocks. This will let you serve multiple websites from one Droplet.
+
+You'll start by setting up your Ubuntu 14.04 server and end with multiple virtual blocks set up for your websites. An Nginx configuration guide is included at the end for reference.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="active">
+      <h2><a href="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/Initial Server Setup with Ubuntu 14.04 _ DigitalOcean.html">Initial Server Setup with Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 17, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          615
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          142
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-14-04">How To Install Linux, nginx, MySQL, PHP (LEMP) stack on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">April 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          201
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          120
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-14-04-lts">How To Set Up Nginx Server Blocks (Virtual Hosts) on Ubuntu 14.04 LTS</a></h2>
+
+      <div class="feedable-date">April 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          193
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          75
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts">Understanding the Nginx Configuration File Structure and Configuration Contexts</a></h2>
+
+      <div class="feedable-date">November 18, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          63
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          2
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+
+          </div>
+    </div>
+  </div>
+
+  <div class="tutorial-ctas">
+  <div class="section-content">
+    <div class="cta-description">
+      <h2>Spin up an SSD cloud server in under a minute.</h2>
+
+      <p>Simple setup. Full root access. Straightforward pricing.</p>
+
+      <a class="cloud-tutorial-cta" href="https://www.digitalocean.com/?utm_medium=community&utm_source=community_gencta&utm_campaign=needaserver&utm_content=initial-server-setup-with-ubuntu-14-04">Deploy Server</a>
+    </div>
+  </div>
+</div>
+    <div class="related-tutorials">
+    <div class="section-content">
+      <h2>Related Tutorials</h2>
+
+      <ul>
+        <li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-the-linux-terminal">An Introduction to the Linux Terminal</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-log-into-a-vps-with-putty-windows-users">How To Log Into a VPS with PuTTY (Windows Users)</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-understand-the-filesystem-layout-in-a-linux-vps">How To Understand the Filesystem Layout in a Linux VPS</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-write-a-simple-shell-script-on-a-vps-part-3">How To Write a Simple Shell Script on a VPS (Part 3)</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-write-a-simple-shell-script-on-a-vps-part-2">How To Write a Simple Shell Script on a VPS (Part 2)</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="content-comments">
+  <div class="section-content">
+    <div class="tutorial commentable" id="tutorial_1134">
+
+  <div class="comments-header">
+    <h4 class="comments-count"><span>136 Comments</span></h4>
+  </div>
+
+  <div class="response no-avatar  response-form">
+
+  <div class="js-display-on-error flash error hidden"></div>
+  <form class="content-form disabled-form" id="new_comment" action="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓" disabled="disabled">
+    <div class="meltdown_wrap" style="height: auto;"><div class="meltdown_topmargin"></div><div class="meltdown_bar"><ul class="meltdown_controls meltdown_controls_preview"><li class="meltdown_control-preview meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Toggle Preview"><span>Preview</span></li></ul><div class="preview-header">Markdown Preview</div><ul class="meltdown_controls meltdown_controls_main"><li class="meltdown_control-bold meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Bold"><span unselectable="on">B</span></li><li class="meltdown_control-italics meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Italics"><span unselectable="on">I</span></li><li class="meltdown_control-h1 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 1"><span unselectable="on">H1</span></li><li class="meltdown_control-h2 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 2"><span unselectable="on">H2</span></li><li class="meltdown_control-h3 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 3"><span unselectable="on">H3</span></li><li class="meltdown_control-ul meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Unordered List"><span unselectable="on">UL</span></li><li class="meltdown_control-ol meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Ordered List"><span unselectable="on">OL</span></li><li class="meltdown_control-link meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Link"><span unselectable="on">Link</span></li><li class="meltdown_control-code meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Code"><span unselectable="on">Code</span></li><li class="meltdown_control-highlight meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Highlight"><span unselectable="on">Highlight</span></li><li class="meltdown_control-table meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Table"><span unselectable="on">Table</span></li></ul></div><div class="meltdown_editor-wrap"><div class="meltdown_editor-deco"><textarea name="comment[content]" id="comment_content" placeholder="Leave a comment..." class="js-comment-content tutorial-comment-field meltdown_editor" data-markdown="true" disabled="disabled" style="overflow: hidden; word-wrap: break-word; resize: none; height: 120px;"></textarea></div></div><div class="meltdown_preview-wrap"><div class="meltdown_preview-wrap2"><div class="meltdown_preview-error-message">Could not load preview. <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#">Try again</a></div><div class="meltdown_preview-loading-message">Loading preview...</div><div class="meltdown_preview content-body"></div></div></div><div class="meltdown_bottommargin"></div></div>
+
+      <div class="log-in-notice "><a href="https://www.digitalocean.com/community/auth/digitalocean">Log In to Comment</a></div>
+
+    <div class="clearfix"></div>
+</form></div>
+
+
+  <div class="comments">
+    <ul class="response-list">
+          <a class="hidden" rel="nofollow" data-remote="true" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments">Load</a>
+    <li id="comment_12357" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/rimouski"><img alt="rimouski" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/c4a1f4d580e8f94cec26b0a66c89b2e8" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/rimouski">rimouski</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12357">April 20, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">When I try to restart the SSH server after some modifications I get this error:
+
+WARNING: Usage of "server" is deprecated, it has been renamed to "rspserver"!
+Starting service Echo...
+Echo Server - Version 1.0
+=========================
+
+General Parameters:
+   Pool Handle             = EchoPool
+   Reregistration Interval = 30.000s
+   Local Addresses         = { all }
+   Runtime Limit           = off
+   Policy Settings
+      Policy Type          = RoundRobin
+      Load Degradation     = 0.000%
+      Load DPF             = 0.000%
+      Weight               = 0
+      Weight DPF           = 0.000%
+20-Apr-2014 01:51:53.0852: P3130.7f57bfb19780@stuff rserpoolsocket.c:354 doRegistration()
+20-Apr-2014 01:51:53.0857: Error: (Re-)Registration failed: no registrar available
+Registration:
+   Identifier              = $62292d97
+
+Plus, my shell prompt become's locked and I have to reconnect.
+
+This is with a fresh copy of Ubuntu 14.04 installed minutes ago.
+
+Fred</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12357" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12357&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="pTLKUB5AxkUU1mLJI8E0IxDwqCYcw4RYiHTebT3Ax9Lm4aPRJ2wRyH3cYoKmqkZBJVPc49plNbwUIiUtq4EdNA==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12357" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12357">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12357"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12362" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/rick599215"><img alt="rick599215" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/8fc68ae55f31cfb5b32b3664b4405a01" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/rick599215">rick599215</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12362">April 20, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">It seems that denyhosts is marked unmaintained for 14.04. </div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_12362" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12362&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="oqBIiT+8+op+VNEj0wFhkooxLtzecaVDAFn+X59H6SXhcyEIBpAtBxde0WhWahPwv5JaGRjXFKecDwUfCQYzww==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12362" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">1</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12362">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+    
+    
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12362"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12375" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/dustinmatlock"><img alt="dustinmatlock" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/3dff96545659ddf9d1706ee4b628d6eb" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/dustinmatlock">dustinmatlock</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12375">April 21, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">I think you meant to say under Step Four: 
+
+"replacing "demo" with the user you created:"</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12375" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12375&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="Lzg7sonadK0Tbmd46IErGANcs2IFRinwp3aVKD8ILDRs61IzsPajIHpkZzNt6ll6Nv/Hp8PgmBQ7IG5oqUn20g==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12375" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12375">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12375"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12387" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/asb"><div class="mod-avatar mod-avatar-small"><img alt="asb" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/a6051c05ce7dca251d644a1404210973" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/asb">asb</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12387">April 21, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@Dustin Fixed. Thanks for catching that!</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12387" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12387&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="D0LKe5zgKAXDttjhjIvZUxeGMnkda1aJJa0gUC2fw0BMkaP6pcz/iKq82KoJ4KsxIiVGvNvN5225+9sQu94Zpg==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12387" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12387">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12387"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12388" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/asb"><div class="mod-avatar mod-avatar-small"><img alt="asb" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/a6051c05ce7dca251d644a1404210973" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/asb">asb</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12388">April 21, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@Rick Roberts: Right, denyhosts has been dead upstream for awhile, and Ubuntu and Debian have decided to stop providing it. Check out:
+
+http://askubuntu.com/questions/433924/package-denyhosts-in-ubuntu-trusty-tahr-is-deleted-temporary-or-forever
+
+You should use fail2ban. I'll remove the link to denyhosts above. Thanks!
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12388" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12388&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="LnBoLyFKrntx1sh1NamEEAP1JCQ3iP/t2PqgxEcB09NtowGuGGZ59hjcyD6wwvZyNlZQ4fEuTglErFuE0UAJNQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12388" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12388">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12388"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12446" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/tamara"><img alt="tamara" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/15b1f549ff403923736c7660b77ec7d9" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/tamara">tamara</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12446">April 23, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">If anyone following step 5 gets stuck with a "Connection refused" error (like I did), there may be a typo in your config file. While still logged in as root in your other terminal window, you can run the following to test the ssh config file for issues:
+
+sshd -T
+
+If there is an issue with a config file, it will tell you which one and on what line.
+
+If you logged out for some reason, you can use DO's console access to log in and fix any issues.
+
+Cheers</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_12446" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12446&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="qve38EZlimPn5668fFl3uXEUy7bfQZfUV5HtLi3QetTpJN5xf0ld7o7trvf5MgXbRLe/cxnnJjDLxxZuu5GgMg==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12446" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">4</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12446">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+      <li id="comment_21650" data-level="1" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/lcividin"><img alt="lcividin" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/c56784fef6981c644695570659a73456" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/lcividin">lcividin</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=21650">October 30, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Thanks for posting this!! (sshd -T)<br>
+ I had a typo myself Allowuser should of been Allowusers and I couldn't see it. This was driving me mad as everything looked correct the ssh service would start but I couldn't get anything from netstat or ps. I kept looking at my configs just couldn't see the typo lol! <br>
+I read your post and went oh, ran the command and bam there it was! thwarted by a single character haha! </p>
+
+<p>Thanks again great very happy :) </p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_21650" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=21650&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="eodetWB3ykpWZCcSiBuqw703KbK+CRmzI8CTiUHEZfM5VDc0WVsdxz9uJ1kNcNihiJRdd3ivqFe/lmjJ14W/FQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=21650" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">1</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_21650">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_21650"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_35055" data-level="1" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/ant1"><img alt="Ant1" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/0614c3a5bb2eb939c13dedc99a848fa7" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/ant1">Ant1</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=35055">July 15, 2015</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Thank you! Luckily I came across your post as soon as I encountered the issue. </p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_35055" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=35055&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="pYBgEoMoFBQ9dmI7ZlTb11NFt+LpLtpPY/EJTOWYLo/mUwmTugTDmVR8YnDjP6m1ZubDJy+Ia6v/p/IMc9n0aQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=35055" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_35055">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_35055"></div>
+</div>
+    </div>
+
+  </li>
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12446"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12718" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/webmaster645665"><img alt="webmaster645665" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/76c1414946a7862c2280c6e6b08c84b2" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/webmaster645665">webmaster645665</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12718">May  1, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">I have followed this tutorial and it is all working, but now I have followed the sftp tutorial too and it keeps checking port 22. With this tutorial I changed that port "to something in between 1025 and 65536", so my question is: how do I know get SFTP to work?</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12718" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12718&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="7ApD/F9/IpnhMIENSgeeIvewXcr1wWMpyxMpzdp8666v2Sp9ZlP1FIg6gUbPbOxAwhMpDzNn0s1XRdKNTD0xSA==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12718" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12718">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12718"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12730" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/jellingwood">jellingwood</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12730">May  2, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Piet:
+
+If you've changed the port that SSH operates on, you can tell the `sftp` command or your file transfer client the new port you selected.
+
+If you are running from the command line, you can specify a non-default port like this.  If the port you selected is 4444, the command would look like:
+
+`sftp -P 4444 username@server.com`
+
+If you are using an (S)FTP client to connect to the server, you can input the new port in the options.  For instance, in Filezilla, there is a field on the right-hand side labeled "Port" as you can see here:
+
+https://i.imgur.com/4FBl4vX.png
+
+Let us know if that works for you or not.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12730" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12730&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="ByRpXBMnRJxYS6kRHiGFhyGMaW+p4D49xuq9nE9WYw1E9wDdKguTETFBqVqbSvflFC8dqm9Gj9lavEbc2Re56w==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12730" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12730">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12730"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12806" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/drphilbobaggins"><img alt="drphilbobaggins" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/9bb76801124dca391fc508a5c86ec26f" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/drphilbobaggins">drphilbobaggins</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12806">May  5, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">I may be missing something, but if the point is to make it more secure by removing roots access, and giving another user the permissions... haven't we just chased our own tail?
+
+We're exactly where we started, except that it's now also a username they need to know.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12806" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12806&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="iXW+l6KeTTBeQNif2ndorL3w3GwHAv7C4ywq8FXsGHDKptcWm7KavTdK2NRfHBrOiFOoqcGkTyZ/etGww63Clg==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12806" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12806">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12806"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12807" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/asb"><div class="mod-avatar mod-avatar-small"><img alt="asb" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/a6051c05ce7dca251d644a1404210973" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/asb">asb</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12807">May  5, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@drphilbobaggins: Having to guess the username is surprisingly helpful when it comes to server security. Run a server for long enough, and you'll see many brute force attempts to SSH into the root account. So if you don't want to disable the root user, at least create a new user and set PermitRootLogin to no in your SSH configuration.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_12807" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12807&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="iFZVFmn0lwwzQnMReQWp0pi4unBdrYVkW1XhR2XZzK/LhTyXUNhAgVpIc1r8btuwrRvOtZsLNIDHAxoH85gWSQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12807" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">1</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12807">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12807"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12966" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/clarke-hamilton"><img alt="clarke.hamilton" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/b3571ca322518fad8fe3da6d56dcfa11" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/clarke-hamilton">clarke.hamilton</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12966">May 11, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">I am using putty to log into my server, I followed the tutorial, added user changed port and  log in with putty under new settings I now receive the message:
+ "server refused our key"
+
+ I am then prompted for pass, for the new user I enter it and gain access. I am not sure what I have missed in the tutorial that is stopping the SSH key from authenticating. 
+
+This authenticated when it was on default 22 and login as root. 
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12966" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12966&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="TaizmLpyz/4yqaZ8WNJ197geWp7KApuf2atEREJpc90Oe9oZg14Yc1ujpjfduQeVjb0uWwykKntF/b8E1CipOw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12966" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12966">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12966"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12967" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/iamjsonkim"><img alt="iamjsonkim" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/cddbe61d8ccdb5a8f2bea72c779861fe" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/iamjsonkim">iamjsonkim</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12967">May 11, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Went through this guide perfectly without any problem. Thank you for the write up Justin.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_12967" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12967&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="v3CuZPN/cZ+SfLRwPJODDocHju0ghv5ZsoMvH/N5RU/8o8flylOmEvt2tDu5+PFssqT6KOYgT70u1dRfZTifqQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12967" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">1</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12967">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12967"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_12978" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/clarke-hamilton"><img alt="clarke.hamilton" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/b3571ca322518fad8fe3da6d56dcfa11" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/clarke-hamilton">clarke.hamilton</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12978">May 11, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">It works, searched for putty tutorials, I had to add my public key for my new user 
+ /.ssh/authorized_keys and chmod 700 and 600</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_12978" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=12978&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="7D0zqcKF/gu6CceF865VrG92ya3Lxw4T1DETKRPKA7uv7loo+6kphtMDx852xSfOWtW9aA1hv/dIZ+hphYvZXQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=12978" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_12978">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_12978"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13001" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/adsf"><img alt="adsf" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/f0b6bcec5308152fc4f528992cc0359b" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/adsf">adsf</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13001">May 12, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Please add in the tutorial
+username ALL=(ALL) NOPASSWD: ALL
+for those that dont want to type password for sudo each time.
+It is not practical to type password each time
+thanks</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13001" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13001&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="oKm9ODOo4gM/BB99aByyh8ITBsc5a7oxh1S2Mp1XA93jetS5CoQ1jlYOHzbtd8Dl97ByAv/NC9UbAk1yCxbZOw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13001" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13001">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13001"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13024" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/kamaln7"><div class="mod-avatar mod-avatar-small"><img alt="kamaln7" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/215b6bc15b5cf772f9c4477a3ba0544b" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/kamaln7">kamaln7</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13024">May 13, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@adsf: I wouldn't recommend doing that. It's insecure to leave sudo access unprotected, it's actually more secure to type out your password every one in a while.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13024" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13024&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="GlaAO4+o2mntFBAcFdUYPbHtBoTfY6EGu2NWzRyf1iVZhem6toQN5IQeEFeQvmpfhE5yQRnFEOInNa2Nit4Mww==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13024" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13024">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13024"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13067" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/tom593555"><img alt="tom593555" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/f6e99f8d703c8bf552259b19c589c028" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/tom593555">tom593555</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13067">May 14, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@adsf: If typing the password is an annoyance for you, type "sudo su" to temporarily log in as root.  This is a much better option than leaving sudo access unprotected.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13067" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13067&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="Xr2RxEoJnL8/yVRES3UBTIRPrZUpw3iDWng2uCWaTmcdbvhFcyVLMlbDVA/OHnMusezZUO9lyWfGLs34s9uUgQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13067" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13067">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13067"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13352" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/timothybernerslee"><img alt="timothybernerslee" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/e5949381d0dd1d37359e54de15134ceb" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/timothybernerslee">timothybernerslee</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13352">May 26, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">When I use FileZilla and try delete index.php from /var/www/html/ I get - permission denied. How send sudo to ftp-client?</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13352" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13352&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="boaqhUYpdwVNi+KHiIwUQ7Py1u1w8LfqZHS35av3m/otVcMEfwWgiCSB4swN52YhhlGiKLZWBg74IkylPbZBHA==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13352" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13352">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13352"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13370" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/kamaln7"><div class="mod-avatar mod-avatar-small"><img alt="kamaln7" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/215b6bc15b5cf772f9c4477a3ba0544b" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/kamaln7">kamaln7</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13370">May 27, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">@timothybernerslee: You can't use sudo or connect as root using FTP. Use SFTP instead -- it's much more secure (while the name is very similar to "FTP", it's not related to the FTP protocol at all): <a href="https://www.digitalocean.com/community/articles/how-to-use-filezilla-to-transfer-and-manage-files-securely-on-your-vps">https://www.digitalocean.com/community/articles/how-to-use-filezilla-to-transfer-and-manage-files-securely-on-your-vps</a>.
+
+Make sure your user has write permissions to index.php so you can delete it:
+<pre>sudo chown youruser /var/www/html/index.php</pre></div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13370" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13370&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="AnDmuX1xf5iUlhUa2UEJWdbf/6ITDOKOOunc2kzUXj1Bo484RF2oFf2cFVFcKns743yLZ9WqU2qmvyea2pWE2w==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13370" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13370">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13370"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13883" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/web"><img alt="web" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/3b08e7d8d966023a8958e3257c6235c2" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/web">web</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13883">June 12, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">After going through these steps I'm finding that ssh access is requiring a password to login (using the new user btw and not root as that is of course disabled) , in this case ssh keys were setup during droplet creation, is there another step to take to rectify this so no password is required for ssh with this new user?
+
+Note: initially root@droplet-ip ssh is working out of the box with no password required on this same laptop/droplet combo. 
+
+Thanks!</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_13883" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13883&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="RWUnYIQsEALxnnXR+s0aTfTxm7zyjOFnV4VsaCxQjpoGtk7hvQDHj5iUdZp/pmgvwVLveTQqUIPL05couhFUfA==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13883" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13883">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13883"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_13898" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/asb"><div class="mod-avatar mod-avatar-small"><img alt="asb" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/a6051c05ce7dca251d644a1404210973" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/asb">asb</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13898">June 12, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">You need to make sure that your public key is in the authorized_keys file for your user. Run:
+<pre>cat ~/.ssh/id_rsa.pub | ssh user@your.ip.address "cat &gt;&gt; ~/.ssh/authorized_keys"
+</pre></div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes upvoted comment-upvote"><form data-upvotable="comment_13898" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=13898&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="9SdhNSlYkxUecoDNaXu6KNus679VOIhXh8SvD9CNUnq29Ai0EHREmHd4gIbsEMhK7g+fepOeObMbklRPRsyInA==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=13898" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">2</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_13898">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+      <li id="comment_24113" data-level="1" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/bijuoos"><img alt="bijuoos" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/2e7b5f940aa5db6a516954beabafe599" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/bijuoos">bijuoos</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=24113">December 11, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>I got the Public Key in section 4. How can I obtain my private key? That not mentioned here and its a most confusing things newbies like me.</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_24113" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=24113&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="842BR0DB2iNdoH9g4K9yqz0s7fUlDLNPbOcsK6pjNNWwXujGee0NrjSqfytlxADJCI+ZMOOqAqvwsddrPCLuMw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=24113" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_24113">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_24113"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_24149" data-level="1" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/asb"><div class="mod-avatar mod-avatar-small"><img alt="asb" class="avatar avatar-small" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/a6051c05ce7dca251d644a1404210973" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/asb">asb</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=24149">December 11, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p><a href="https://www.digitalocean.com/community/users/bijuoosmail" class="username-tag">@bijuoosmail</a> Running the <code>ssh-keygen</code> command will produce two files. Your private key, <code>id_rsa</code>, which should stay on your local computor, and a public key that is copied to the server <code>id_rsa.pub</code></p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_24149" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=24149&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="gW1BvKWZqoUov2NRBJaMJdO8xCP8+PL+hO3UzAO7vH3Cvig9nLV9CEG1YxqB/f5H5h+w5jpeQxoYuy+Mlfpmmw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04?comment=24149" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_24149">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_24149"></div>
+</div>
+    </div>
+
+  </li>
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_13898"></div>
+</div>
+    </div>
+
+  </li></ul><div class="comment-pagination"><span class="previous_page disabled">Previous</span> <em class="current">1</em> <a rel="next nofollow" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments?page=2">2</a> <a rel="nofollow" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments?page=3">3</a> <a rel="nofollow" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments?page=4">4</a> <a rel="nofollow" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments?page=5">5</a> <a class="next_page" rel="next nofollow" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04/comments?page=2">Next</a></div>
+
+      <div class="comments-spinner" style="display: none;"><div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+</div>
+  </div>
+
+  <div class="load-more-container"><a class="load-more" href="javascript:void(0);"><span class="load-more-text">Load More Comments</span><div class="comments-spinner" style="display: none;"><div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+</div></a></div>
+</div>
+
+
+  </div>
+</div>
+
+<div class="creative-commons">
+  <a class="creative-commons-image" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img rel="license" alt="Creative Commons License" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/creativecommons-654928f5ebfbb75f4543af8903eabfe4.png"></a>
+    <div class="license-text">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
+</div>
+
+
+
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      <footer class="footer">
+  <div class="footer-icon">
+    <span class="icon icon-sammy"></span>
+  </div>
+
+  <div class="copyright">
+    Copyright © 2016 DigitalOcean™ Inc.
+  </div>
+
+  <ul class="main-nav-links">
+    <li><a href="https://www.digitalocean.com/community">Community</a></li>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="https://www.digitalocean.com/community/tags">Tags</a></li>
+    <li>
+      <a href="https://www.digitalocean.com/community/tutorials/feed">
+        RSS <span class="icon-rss"></span>
+</a>    </li>
+  </ul>
+
+  <br>
+
+  <ul class="secondary-nav-links">
+
+    <li><a href="https://www.digitalocean.com/legal/terms/">Terms, Privacy, &amp; Copyright</a></li>
+    <li><a href="https://www.digitalocean.com/security/">Security</a></li>
+      <li><a data-toggle="modal" data-target="#sign-in-modal" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#">Report a Bug</a></li>
+    <li><a href="https://www.digitalocean.com/community/get-paid-to-write">Get Paid to Write</a></li>
+  </ul>
+</footer>
+
+
+
+
+
+    <div id="sign-in-modal" class="modal fade mini-modal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Sign Up</h1>
+        <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+      </div>
+      <div class="modal-body">
+        <div class="sign-in-message">Not so fast, you must have an account before you can do that.</div>
+
+        <div class="sign-in-modal-actions">
+          <a class="sign-in-link button blue-button" data-default-url="/community/auth/digitalocean" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+          <a class="sign-up-link button green-button" data-default-url="/community/auth/digitalocean?display=sessionless+register" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+  <script>
+    $(function() {
+      init_sharing();
+      new NewsletterSignup();
+      new GrowableMarkdown({ target: '[data-growable-markdown]' });
+    });
+  </script>
+
+  <div id="report-a-bug-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Report a Bug</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+          <div class="report-a-bug-message text-center">Use this form to report bugs related to the Community</div>
+          <div class="report-a-bug-actions do-form">
+            <div class="form-wrap">
+              <form class="new_bug_report" id="new_bug_report" action="https://www.digitalocean.com/community/bug_reports" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="QI0pH7XIXlR4VID3zjq7hkq++OU1BViC/F39KJuXmVEDXkCejOSJ2RFegLxLUcnkfx2MIPOj6WZgCwZoDdZDtw==">
+                <fieldset>
+                  <div class="field">
+                    <input placeholder="Name" type="text" name="bug_report[name]" id="bug_report_name">
+                  </div>
+                  <div class="field">
+                    <input placeholder="Email" required="required" type="text" name="bug_report[email]" id="bug_report_email">
+                  </div>
+                  <div class="field">
+                      <textarea placeholder="Message" required="required" name="bug_report[message]" id="bug_report_message" style="overflow: hidden; word-wrap: break-word; resize: none; height: 125px;"></textarea>
+                  </div>
+
+                  <div class="field actions">
+                    <input type="submit" name="commit" value="Submit" class="button">
+                  </div>
+                </fieldset>
+</form>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+
+<textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; -webkit-transition: none; transition: none; height: 0px !important; min-height: 0px !important; font-family: proxima-nova, sans-serif; font-size: 17px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; word-spacing: 0px; text-indent: 0px; line-height: 23.7999992370605px; width: 58px;" class="autosizejs" id="autosizejs"></textarea><a id="scrollUp" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04#top" style="position: fixed; z-index: 2147483647;">Scroll to top</a><div id="scrollUp-active" style="position: absolute; top: 300px; width: 100%; border-top-width: 1px; border-top-style: dotted; border-top-color: rgb(0, 255, 255); z-index: 2147483647;"></div><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/xd_arbiter.html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div><script type="text/javascript" id="">(function(){var a=window._fbq||(window._fbq=[]);if(!a.loaded){var b=document.createElement("script");b.async=!0;b.src="//connect.facebook.net/en_US/fbds.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);a.loaded=!0}a.push(["addPixelId","1428881624071898"])})();window._fbq=window._fbq||[];window._fbq.push(["track","PixelInitialized",{}]);</script>
+<noscript>&lt;img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1428881624071898&amp;amp;ev=PixelInitialized"&gt;</noscript><script type="text/javascript" id="">(function(b,c,e,g,d){var f,a;b[d]=b[d]||[];f=function(){var a={ti:"4047822"};a.q=b[d];b[d]=new UET(a);b[d].push("pageLoad")};a=c.createElement(e);a.src=g;a.async=1;a.onload=a.onreadystatechange=function(){var b=this.readyState;b&&"loaded"!==b&&"complete"!==b||(f(),a.onload=a.onreadystatechange=null)};c=c.getElementsByTagName(e)[0];c.parentNode.insertBefore(a,c)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script><noscript>&lt;img src="//bat.bing.com/action/0?ti=4047822&amp;amp;Ver=2" height="0" width="0" style="display:none; visibility: hidden;"&gt;</noscript><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.9972621451597661"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.5400812611915171" width="0" height="0" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/0"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.8880777654703707" width="0" height="0" src="./Initial Server Setup with Ubuntu 14.04 _ DigitalOcean_files/0(1)"></div><script type="text/javascript" id="">"undefined"!==typeof window.analytics&&analytics.track("dwell",{time:"1 minute"});</script><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe></body></html>

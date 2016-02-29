@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<!-- saved from url=(0107)https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts -->
+<html class="wf-proximanova-n4-active wf-proximanova-i4-active wf-proximanova-n1-active wf-proximanova-n3-active wf-proximanova-n6-active wf-proximanova-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>An Introduction to DNS Terminology, Components, and Concepts | DigitalOcean</title>
+
+<meta name="description" content="DNS, or the Domain Name System, is an integral part of how the internet functions today. However, the way that DNS works is often quite mysterious for new administrators. In this guide, we will discuss some of the common terminology and concepts that">
+<meta name="keywords" content="Linux Basics FAQ DNS">
+
+<meta name="og:title" content="An Introduction to DNS Terminology, Components, and Concepts | DigitalOcean">
+<meta name="og:description" content="DNS, or the Domain Name System, is an integral part of how the internet functions today. However, the way that DNS works is often quite mysterious for new administrators. In this guide, we will discuss some of the common terminology and concepts that">
+<meta name="og:site_name" content="DigitalOcean">
+<meta name="og:type" content="article">
+
+<meta name="twitter:site" content="DigitalOcean">
+<meta name="twitter:title" content="An Introduction to DNS Terminology, Components, and Concepts | DigitalOcean">
+<meta name="twitter:description" content="DNS, or the Domain Name System, is an integral part of how the internet functions today. However, the way that DNS works is often quite mysterious for new administrators. In this guide, we will discuss some of the common terminology and concepts that">
+<meta name="twitter:creator" content="DigitalOcean">
+<meta name="twitter:card" content="photo">
+<meta name="twitter:url" content="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts">
+
+<meta property="og:image" content="https://www.digitalocean.com/assets/community/default_social_sharing-4c803c152c4cc1974dfac71a69fdab63.png">
+<meta name="twitter:image" content="https://www.digitalocean.com/assets/community/default_social_sharing-4c803c152c4cc1974dfac71a69fdab63.png">
+
+  <link rel="canonical" href="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean.html">
+
+
+    <link rel="stylesheet" media="all" href="https://www.digitalocean.com/assets/community/application-c75a6112b5c31fd97d79f8f24a947e7e.css">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="qlBgvwpN88VlL4Al3LPTEw5mH3FyUX0RO6NnJoFOwOPpgwk+M2EkSAwlgG5Z2KFxO8VrtLT3zPWn9ZxmFw8aBQ==">
+    <script src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/bat.js" async=""></script><script async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/fbds.js"></script><script type="text/javascript" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/conversion_async.js"></script><script type="text/javascript" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/analytics.js"></script><script type="text/javascript" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/track.js" id="cio-tracker" data-site-id="e7cc779295927747a7c2"></script><script src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/cb=gapi.loaded_0" async=""></script><script async="" id="hn-button.js" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/hn-button.js"></script><script type="text/javascript" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/plusone.js" gapi_processed="true"></script><script id="facebook-jssdk" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/all.js"></script><script id="twitter-wjs" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/widgets.js"></script><script async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/gtm.js"></script><script type="text/javascript" async="" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/analytics.min.js"></script><script type="text/javascript" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/njm7orv.js"></script><style type="text/css"></style>
+    <style type="text/css">.tk-proxima-nova{font-family:"proxima-nova",sans-serif;}</style><link rel="stylesheet" href="https://use.typekit.net/c/c2e19f/1w;proxima-nova,2,2clzCG:W:i4,2clzCK:W:n1,2clzC9:W:n3,2clzCF:W:n4,2clzCH:W:n6,2clzC5:W:n7/l?3bb2a6e53c9684ffdc9a9ef41e5b2a629733fa03f01d82f7f88438224fdc49c94770f7314ee20b594bfd667e7adf6430e6fbecfcf7a4fe39515355ce333782e90eaf61ea39ab69145df9acffbbb673f3f67f510f1caa19fde5c4792f140f0696250bef663a3b17703361be0a9415c6a72b58d98648cf9bcbfd1e44c32567f9666b1c308487a77810287a966185ab50da4228907d0c8ab671751e65df35258a55f924f042dd0b8fa1c2355c46ef6e2fee59accd0d15d53a460fbefab4c09c4b845e92de3d8e017ee5adeb7de260ab4bad3e6390b45ce59fcdf4aaabf114cd9db2d5ca3f84596b5682eb3c4d3f55ce1fc576886704d2cbe5920bcb123486a60ddee6aa5506c223c1e70db6f060f0288893b9ae2f65935fbc6bab3193eeeeb669414c57001acfc7c20820249307e12304e2e6fad94c1757a4aee7320abd4ff9791bd35b1bb0e74dc58fbf1d4a372e9fea0da9d3a0d669c552f6b9bc6b80bbc98f8913154737e2e79c9190ee230673989614f0aeaa755c3fa55829fe8aa53f021f8758693c48e9fe62e73b56a901889cbff3ded6a0edd48167e90cf5d70bd878a647bd9c6d317e40534c" media="all"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/701281621.js"></script>
+    <script type="text/javascript">
+      if(window.analytics=window.analytics||[],window.analytics.included)window.console&&console.error&&console.error("analytics.js included twice");else{window.analytics.included=!0,window.analytics.methods=["identify","group","track","page","pageview","alias","ready","on","once","off","trackLink","trackForm","trackClick","trackSubmit"],window.analytics.factory=function(a){return function(){var n=Array.prototype.slice.call(arguments);return n.unshift(a),window.analytics.push(n),window.analytics}};for(var i=0;i<window.analytics.methods.length;i++){var key=window.analytics.methods[i];window.analytics[key]=window.analytics.factory(key)}window.analytics.load=function(a){var n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+a+"/analytics.min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(n,t)},window.analytics.SNIPPET_VERSION="2.0.9",
+      window.analytics.load("puo3uv968t")}
+      window.analytics.page();
+    </script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://www.digitalocean.com/community/tutorials/feed">
+    <script src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/application-9bb6ea14934f161c4dc81c7ef46af3ec.js"></script>
+  <style>.fluidvids {width: 100%; max-width: 100%; position: relative;}.fluidvids-item {position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;}</style><script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script><link rel="stylesheet" type="text/css" href="chrome-extension://neomigpibafpboiknmijddgnncengfnm/css/divpop.css"><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f6f7f8;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3a5795;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{width:auto;height:auto;min-height:initial;min-width:initial;background:none}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{color:#fff;display:block;padding-top:20px;clear:both;font-size:18px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;bottom:0;left:0;right:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #2f477a;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f6f7f8;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/yD/r/t-wz8gw1xG1.png);background-repeat:no-repeat;background-position:50% 50%;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}</style></head>
+  <body class="tutorials-controller tutorial-single" data-env="production" ,="" data-prefix="/community" data-user-id="" data-facebook-app-id="694818843983011">
+    <script>
+//<![CDATA[
+
+//]]>
+</script>
+<!-- Google Tag Manager -->
+<noscript>&lt;iframe src="//www.googletagmanager.com/ns.html?id=GTM-KHWBBT"
+height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KHWBBT');</script>
+<!-- End Google Tag Manager -->
+    
+
+    <div class="outside_viewport">
+        <div class="table-of-contents  tocify sticky" style="top: 72px;"><ul id="tocify-header0" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="domain-terminology"><a>Domain Terminology</a></li></ul><ul id="tocify-header1" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="how-dns-works"><a>How DNS Works</a></li></ul><ul id="tocify-header2" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="zone-files"><a>Zone Files</a></li></ul><ul id="tocify-header3" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="record-types"><a>Record Types</a></li></ul><ul id="tocify-header4" class="tocify-header" style="display: none;"><li class="tocify-item tocify-focus" data-unique="conclusion"><a>Conclusion</a></li></ul></div>
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Share</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="social-sharing social-sharing-container">
+            <ul class="bottom ">
+              <li class="shareBtn" id="sbTwitter">
+                <a href="http://twitter.com/share?text=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=twshare" class="share-icon share-popup" title="Share on Twitter">
+                  <span class="sIcon icon-bird"></span>
+                </a>
+                
+                <a href="http://twitter.com/share?text=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=twshare" class="share-link share-popup" title="Share on Twitter">
+                  Twitter
+                </a>
+                
+              </li>
+
+              <li class="shareBtn" id="sbFacebook">
+                <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  <span class="sIcon icon-facebook-B"></span>
+                </a>
+
+                <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  Facebook
+                </a>
+              </li>
+              <li class="shareBtn" id="sbGoogle">
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                  <span class="sIcon icon-google-plus-B"></span>
+                </a>
+
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                  Google+
+                </a>
+              </li>
+              <li class="shareBtn" id="sbYC">
+                <a href="https://news.ycombinator.com/submitlink?t=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&u=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=hnshare" class="share-icon share-popup " target="_blank" title="Submit to Hacker News">
+                  <span class="sIcon icon-hacker-news"></span>
+                </a>
+
+                <a href="https://news.ycombinator.com/submitlink?t=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&u=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                  Hacker News
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="contents-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Contents</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="table-of-contents-modal open tocify"><ul id="tocify-header0" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="domain-terminology"><a>Domain Terminology</a></li></ul><ul id="tocify-header1" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="how-dns-works"><a>How DNS Works</a></li></ul><ul id="tocify-header2" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="zone-files"><a>Zone Files</a></li></ul><ul id="tocify-header3" class="tocify-header" style="display: none;"><li class="tocify-item" data-unique="record-types"><a>Record Types</a></li></ul><ul id="tocify-header4" class="tocify-header" style="display: none;"><li class="tocify-item tocify-focus" data-unique="conclusion"><a>Conclusion</a></li></ul></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="share-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Share</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+
+          <div class="social-sharing social-sharing-container">
+            <ul class="top ">
+              <li class="shareBtn" id="sbTwitter">
+                <a href="http://twitter.com/share?text=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=twshare" class="share-icon share-popup" title="Share on Twitter">
+                  <span class="sIcon icon-bird"></span>
+                </a>
+                
+                <a href="http://twitter.com/share?text=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=twshare" class="share-link share-popup" title="Share on Twitter">
+                  Twitter
+                </a>
+                
+              </li>
+
+              <li class="shareBtn" id="sbFacebook">
+                <a class="share-icon facebook-share" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  <span class="sIcon icon-facebook-B"></span>
+                </a>
+
+                <a class="share-link facebook-share" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=fbshare" onclick="" title="Share on Facebook">
+                  Facebook
+                </a>
+              </li>
+              <li class="shareBtn" id="sbGoogle">
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=gpshare" class="share-icon share-popup" title="Share on Google+">
+                  <span class="sIcon icon-google-plus-B"></span>
+                </a>
+
+                <a href="https://plus.google.com/share?url=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=gpshare" class="share-link share-popup" title="Share on Google+">
+                  Google+
+                </a>
+              </li>
+              <li class="shareBtn" id="sbYC">
+                <a href="https://news.ycombinator.com/submitlink?t=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&u=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=hnshare" class="share-icon share-popup " target="_blank" title="Submit to Hacker News">
+                  <span class="sIcon icon-hacker-news"></span>
+                </a>
+
+                <a href="https://news.ycombinator.com/submitlink?t=An%20Introduction%20to%20DNS%20Terminology,%20Components,%20and%20Concepts&u=https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?utm_content=an-introduction-to-dns-terminology-components-and-concepts&utm_medium=community&utm_source=hnshare" class="share-link share-popup" target="_blank" title="Submit to Hacker News">
+                  Hacker News
+                </a>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+
+      <div class="mobile-nav">
+  
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+    
+  <a class="close-panel icon-close" href="javascript:void(0);"></a>
+
+  <form class="mobile-search" action="https://www.digitalocean.com/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+    <span class="icon icon-search-thin"></span>
+    <input type="text" name="q" id="q" placeholder="Search">
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form>
+  
+<nav>
+
+  <ul>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="http://do.co/DOcommunity" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+  
+</div>
+      
+      <header>
+  <div class="flash-container"></div>
+
+  <div class="main-menu-container">
+    <div class="wrapper">
+      <div class="logo">
+        <a class="" href="https://www.digitalocean.com/">
+          <span class="icon icon-logo"></span>
+</a>
+        <a class="" href="https://www.digitalocean.com/community">
+          <span class="logo-community-text">Community</span>
+</a>      </div>
+
+      <a class="mobile-nav-toggle icon-menu-thin" data-role="left">
+        <span>Menu</span>
+      </a>
+
+      
+<nav>
+
+  <ul>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="http://do.co/DOcommunity" target="_blank">Meetups</a></li>
+    <li class="mobile-nav-only"><a href="https://www.digitalocean.com/">Main Site</a></li>
+  </ul>
+</nav>
+
+
+      
+<div class="account-buttons">
+    <div id="entrance">
+      <a id="sign-up" class="button" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+      <a id="log-in" class="button" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+    </div>
+</div>
+      <div class="header-search open">
+  <form action="https://www.digitalocean.com/community/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+    <span class="icon icon-search-thin"></span>
+    <input type="text" name="q" id="q" placeholder="Search" autocomplete="off" spellcheck="off" class="header-search-input" data-algolia-application-id="6ZHEUVKJ88" data-algolia-api-key="c5470567eae7fa1177d43222e18ba086">
+    <button name="button" type="submit" class="icon-btn">submit</button>
+</form></div>
+
+<div class="search-results-dropdown dropdown" data-root-path="https://www.digitalocean.com/community">
+  <div class="container">
+    <div class="header-search-results-list"></div>
+
+    <div id="btn-wrap">
+      <a class="more-search-results" data-search-path="/community/search" href="https://www.digitalocean.com/community/search">
+        <span class="icon-mag"></span>
+        View All Results
+</a>    </div>
+  </div>
+</div>
+
+<script type="text/template" id="autocomplete-hits-template">
+  <div class="inner-search">
+    <ul>
+        {{#hits}}
+          <li>
+            <span class='icon icon-{{type}}'></span>
+            <a href='{{url}}'>{{{_highlightResult.title.value}}}</a>
+          </li>
+        {{/hits}}
+    </ul>
+  </div>
+</script>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    
+  </div>
+</header>
+
+
+      
+
+      <div class="wrapper layout-wrapper">
+
+        
+
+
+
+
+
+
+<div class="section-content section-content-growable content">
+  <div class="postable-info-bar-container">
+  <div class="postable-info-bar">
+    <div class="left-section">
+        <div class="tutorial-author-avatar">
+          <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+        </div>
+
+        <div class="author-and-date">
+          <div class="tutorial-author">
+            <div class="by">By: </div>
+            <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a>
+          </div>
+        </div>
+
+      <div class="upvotes upvoted tutorial-upvote"><form data-upvotable="tutorial_1006" data-upvotable-type="tutorial" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=1006&upvote%5Bupvotable_type%5D=Tutorial" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="qlBgvwpN88VlL4Al3LPTEw5mH3FyUX0RO6NnJoFOwOPpgwk+M2EkSAwlgG5Z2KFxO8VrtLT3zPWn9ZxmFw8aBQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="" title="Do you find this tutorial helpful? Show the author by Hearting it!" data-placement="bottom"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">101</div></div>
+
+        <div class="tutorial-comments-count">
+          <span class="icon icon-new-comment"></span>
+          9
+        </div>
+
+
+    </div>
+
+    <div class="right-section">
+      <div class="section-item social-sharing-item">
+        <div class="sharing">
+  <a class="share-button" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#" data-toggle="modal" data-target="#share-modal">
+    <span class="icon icon-share-square"></span>
+    <span class="share-button-text">
+      Share
+    </span>
+  </a>
+</div>
+
+
+      </div>
+
+        <div class="section-item table-of-contents-triggers"><div class="toc-trigger ">
+  <a href="javascript:void(0);">
+    <span class="title">Contents</span>
+    <span class="icon icon-close-light"></span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+
+<div class="toc-trigger-mobile" data-toggle="modal" data-target="#contents-modal">
+  <a href="javascript:void(0);">
+    <span class="title">Contents</span>
+    <span class="icon icon-arrow-down"></span>
+  </a>
+</div>
+
+
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="container">
+
+      <div class="info-cta">
+    <a class="icon-close-light" href="javascript:void();"></a>
+    We hope you find this tutorial helpful. In addition to guides like this one, we provide simple cloud infrastructure for developers. <a href="https://www.digitalocean.com/?utm_medium=community&utm_source=community_gencta&utm_campaign=needaserver&utm_content=an-introduction-to-dns-terminology-components-and-concepts">
+        Learn more →
+</a>  </div>
+
+  
+    <h1 class="content-title">An Introduction to DNS Terminology, Components, and Concepts</h1>
+
+    <span class="meta-section tags">
+      <span class="meta-value"><span class="tutorial-date">Feb 18, 2014</span> <span class="hashtag-icon"></span> <a class="" href="https://www.digitalocean.com/community/tags/dns?type=tutorials">DNS</a>, <a class="" href="https://www.digitalocean.com/community/tags/linux-basics?type=tutorials">Linux Basics</a>, <a class="" href="https://www.digitalocean.com/community/tags/faq?type=tutorials">FAQ</a> </span>
+    </span>
+  </div>
+
+  <div class="container">
+      <div class="tutorial-series-container collapsed">
+    <div class="section-content">
+
+      <h2 class="tutorial-series-heading">Tutorial Series</h2>
+
+            <div class="tutorial-series-toggle">
+              This tutorial is part 1 of 7 in the series:
+              <a data-reveal="fast" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#tutorial_series_6">An Introduction to Managing DNS</a>
+            </div>
+
+          <div id="tutorial_series_6" class="tutorial-series hidden">
+            <a class="icon-close" href="javascript:void(0);"></a>
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/an-introduction-to-managing-dns">An Introduction to Managing DNS</a></h3>
+
+              <div class="description">
+                DNS, or the domain name system, is an essential component of modern internet communication.  It allows us to reference computers by names instead of IP addresses.  In this series, we will cover the basic ideas behind DNS so that you feel comfortable working with it.  Afterwards, we will walk through various ways that you can gain greater control over your domains and DNS resolution.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="active">
+      <h2><a href="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean.html">An Introduction to DNS Terminology, Components, and Concepts</a></h2>
+
+      <div class="feedable-date">February 18, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          101
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          9
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-dns-server-types-how-to-choose-the-right-dns-configuration">A Comparison of DNS Server Types:  How To Choose the Right DNS Configuration</a></h2>
+
+      <div class="feedable-date">June 30, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          21
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          3
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean">How To Set Up a Host Name with DigitalOcean</a></h2>
+
+      <div class="feedable-date">August 28, 2012</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          378
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          226
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/etel">Etel Sverdlov</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-caching-or-forwarding-dns-server-on-ubuntu-14-04">How To Configure Bind as a Caching or Forwarding DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">June 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          16
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          13
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-an-authoritative-only-dns-server-on-ubuntu-14-04">How To Configure Bind as an Authoritative-Only DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">June 27, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          16
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          37
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-14-04">How To Configure BIND as a Private Network DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">August 12, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          33
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          15
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/manicas">Mitchell Anicas</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-use-nsd-an-authoritative-only-dns-server-on-ubuntu-14-04">How To Use NSD, an Authoritative-Only DNS Server, on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">July  3, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          2
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          8
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+  
+  <a class="next-tutorial" href="https://www.digitalocean.com/community/tutorials/a-comparison-of-dns-server-types-how-to-choose-the-right-dns-configuration">Next Tutorial</a>
+
+          </div>
+    </div>
+  </div>
+
+  </div>
+
+    <div class="content-body tutorial-content tutorial-content-legacy" data-growable-markdown="">
+      <h3 id="introduction">Introduction</h3>
+
+<hr>
+
+<p>DNS, or the Domain Name System, is often a very difficult part of learning how to configure websites and servers.  Understanding how DNS works will help you diagnose problems with configuring access to your websites and will allow you to broaden your understanding of what's going on behind the scenes.</p>
+
+<p>In this guide, we will discuss some fundamental DNS concepts that will help you hit the ground running with your DNS configuration.  After tackling this guide, you should be ready to <a href="https://digitalocean.com/community/articles/how-to-set-up-a-host-name-with-digitalocean">set up your domain name with DigitalOcean</a> or <a href="https://digitalocean.com/community/articles/how-to-install-the-bind-dns-server-on-centos-6">set up your very own DNS server</a>.</p>
+
+<p>Before we jump into setting up your own servers to resolve your domain or setting up our domains in the control panel, let's go over some basic concepts about how all of this actually works.</p>
+
+<div name="domain-terminology" data-unique="domain-terminology"></div><h2 id="domain-terminology">Domain Terminology</h2>
+
+<hr>
+
+<p>We should start by defining our terms.  While some of these topics are familiar from other contexts, there are many terms used when talking about domain names and DNS that aren't used too often in other areas of computing.</p>
+
+<p>Let's start easy:</p>
+
+<h3 id="domain-name-system">Domain Name System</h3>
+
+<hr>
+
+<p>The domain name system, more commonly known as "DNS" is the networking system in place that allows us to resolve human-friendly names to unique addresses.</p>
+
+<h3 id="domain-name">Domain Name</h3>
+
+<hr>
+
+<p>A domain name is the human-friendly name that we are used to associating with an internet resource.  For instance, "google.com" is a domain name.  Some people will say that the "google" portion is the domain, but we can generally refer to the combined form as the domain name.</p>
+
+<p>The URL "google.com" is associated with the servers owned by Google Inc.  The domain name system allows us to reach the Google servers when we type "google.com" into our browsers.</p>
+
+<h3 id="ip-address">IP Address</h3>
+
+<hr>
+
+<p>An IP address is what we call a network addressable location.  Each IP address must be unique within its network.  When we are talking about websites, this network is the entire internet.</p>
+
+<p>IPv4, the most common form of addresses, are written as four sets of numbers, each set having up to three digits, with each set separated by a dot.  For example, "111.222.111.222" could be a valid IPv4 IP address.  With DNS, we map a name to that address so that you do not have to remember a complicated set of numbers for each place you wish to visit on a network.</p>
+
+<h3 id="top-level-domain">Top-Level Domain</h3>
+
+<hr>
+
+<p>A top-level domain, or TLD, is the most general part of the domain.  The top-level domain is the furthest portion to the right (as separated by a dot).  Common top-level domains are "com", "net", "org", "gov", "edu", and "io".</p>
+
+<p>Top-level domains are at the top of the hierarchy in terms of domain names.  Certain parties are given management control over top-level domains by ICANN (Internet Corporation for Assigned Names and Numbers).  These parties can then distribute domain names under the TLD, usually through a domain registrar.</p>
+
+<h3 id="hosts">Hosts</h3>
+
+<hr>
+
+<p>Within a domain, the domain owner can define individual hosts, which refer to separate computers or services accessible through a domain.  For instance, most domain owners make their web servers accessible through the bare domain (example.com) and also through the "host" definition "www" (www.example.com).</p>
+
+<p>You can have other host definitions under the general domain.  You could have API access through an "api" host (api.example.com) or you could have ftp access by defining a host called "ftp" or "files" (ftp.example.com or files.example.com).  The host names can be arbitrary as long as they are unique for the domain.</p>
+
+<h3 id="subdomain">SubDomain</h3>
+
+<hr>
+
+<p>A subject related to hosts are subdomains.</p>
+
+<p>DNS works in a hierarchy.  TLDs can have many domains under them.  For instance, the "com" TLD has both "google.com" and "ubuntu.com" underneath it.  A "subdomain" refers to any domain that is part of a larger domain.  In this case, "ubuntu.com" can be said to be a subdomain of "com". This is typically just called the domain or the "ubuntu" portion is called a SLD, which means second level domain.</p>
+
+<p>Likewise, each domain can control "subdomains" that are located under it.  This is usually what we mean by subdomains.  For instance you could have a subdomain for the history department of your school at "www.history.school.edu".  The "history" portion is a subdomain.</p>
+
+<p>The difference between a host name and a subdomain is that a host defines a computer or resource, while a subdomain extends the parent domain.  It is a method of subdividing the domain itself.</p>
+
+<p>Whether talking about subdomains or hosts, you can begin to see that the left-most portions of a domain are the most specific.  This is how DNS works: from most to least specific as you read from left-to-right.</p>
+
+<h3 id="fully-qualified-domain-name">Fully Qualified Domain Name</h3>
+
+<hr>
+
+<p>A fully qualified domain name, often called FQDN, is what we call an absolute domain name.  Domains in the DNS system can be given relative to one another, and as such, can be somewhat ambiguous.  A FQDN is an absolute name that specifies its location in relation to the absolute root of the domain name system.</p>
+
+<p>This means that it specifies each parent domain including the TLD.  A proper FQDN ends with a dot, indicating the root of the DNS hierarchy.  An example of a FQDN is "mail.google.com.".  Sometimes software that calls for FQDN does not require the ending dot, but the trailing dot is required to conform to ICANN standards.</p>
+
+<h3 id="name-server">Name Server</h3>
+
+<hr>
+
+<p>A name server is a computer designated to translate domain names into IP addresses.  These servers do most of the work in the DNS system.  Since the total number of domain translations is too much for any one server, each server may redirect request to other name servers or delegate responsibility for a subset of subdomains they are responsible for.</p>
+
+<p>Name servers can be "authoritative", meaning that they give answers to queries about domains under their control.  Otherwise, they may point to other servers, or serve cached copies of other name servers' data.</p>
+
+<h3 id="zone-file">Zone File</h3>
+
+<hr>
+
+<p>A zone file is a simple text file that contains the mappings between domain names and IP addresses.  This is how the DNS system finally finds out which IP address should be contacted when a user requests a certain domain name.</p>
+
+<p>Zone files reside in name servers and generally define the resources available under a specific domain, or the place that one can go to get that information.</p>
+
+<h3 id="records">Records</h3>
+
+<hr>
+
+<p>Within a zone file, records are kept.  In its simplest form, a record is basically a single mapping between a resource and a name.  These can map a domain name to an IP address, define the name servers for the domain, define the mail servers for the domain, etc.</p>
+
+<div name="how-dns-works" data-unique="how-dns-works"></div><h2 id="how-dns-works">How DNS Works</h2>
+
+<hr>
+
+<p>Now that you are familiar with some of the terminology involved with DNS, how does the system actually work?</p>
+
+<p>The system is very simple at a high-level overview, but is very complex as you look at the details.  Overall though, it is a very reliable infrastructure that has been essential to the adoption of the internet as we know it today.</p>
+
+<h3 id="root-servers">Root Servers</h3>
+
+<hr>
+
+<p>As we said above, DNS is, at its core, a hierarchical system.  At the top of this system is what are known as "root servers".  These servers are controlled by various organizations and are delegated authority by ICANN (Internet Corporation for Assigned Names and Numbers).</p>
+
+<p>There are currently 13 root servers in operation.  However, as there are an incredible number of names to resolve every minute, each of these servers is actually mirrored.  The interesting thing about this set up is that each of the mirrors for a single root server share the same IP address.  When requests are made for a certain root server, the request will be routed to the nearest mirror of that root server.</p>
+
+<p>What do these root servers do?  Root servers handle requests for information about Top-level domains.  So if a request comes in for something a lower-level name server cannot resolve, a query is made to the root server for the domain.</p>
+
+<p>The root servers won't actually know where the domain is hosted.  They will, however, be able to direct the requester to the name servers that handle the specifically requested top-level domain.</p>
+
+<p>So if a request for "www.wikipedia.org" is made to the root server, the root server will tell not find the result in its records.  It will check its zone files for a listing that matches "www.wikipedia.org".  It will not find one.</p>
+
+<p>It will instead find a record for the "org" TLD and give the requesting entity the address of the name server responsible for "org" addresses.</p>
+
+<h3 id="tld-servers">TLD Servers</h3>
+
+<hr>
+
+<p>The requester then sends a new request to the IP address (given to it by the root server) that is responsible for the top-level domain of the request.</p>
+
+<p>So, to continue our example, it would send a request to the name server responsible for knowing about "org" domains to see if it knows where "www.wikipedia.org" is located.</p>
+
+<p>Once again, the requester will look for "www.wikipdia.org" in its zone files.  It will not find this record in its files.</p>
+
+<p>However, it will find a record listing the IP address of the name server responsible for "wikipedia.org".  This is getting much closer to the answer we want.</p>
+
+<h3 id="domain-level-name-servers">Domain-Level Name Servers</h3>
+
+<hr>
+
+<p>At this point, the requester has the IP address of the name server that is responsible for knowing the actual IP address of the resource.  It sends a new request to the name server asking, once again, if it can resolve "www.wikipedia.org".</p>
+
+<p>The name server checks its zone files and it finds that it has a zone file associated with "wikipedia.org".  Inside of this file, there is a record for the "www" host.  This record tells the IP address where this host is located.  The name server returns the final answer to the requester.</p>
+
+<h3 id="what-is-a-resolving-name-server">What is a Resolving Name Server?</h3>
+
+<hr>
+
+<p>In the above scenario, we referred to a "requester".  What is the requester in this situation?</p>
+
+<p>In almost all cases, the requester will be what we call a "resolving name server"  A resolving name server is one configured to ask other servers questions.  It is basically an intermediary for a user which caches previous query results to improve speed and knows the addresses of the root servers to be able to "resolve" requests made for things it doesn't already know about.</p>
+
+<p>Basically, a user will usually have a few resolving name servers configured on their computer system.  The resolving name servers are usually provided by an ISP or other organizations.  For instance <a href="https://developers.google.com/speed/public-dns/">Google provides resolving DNS servers</a> that you can query.  These can be either configured in your computer automatically or manually.</p>
+
+<p>When you type a URL in the address bar of your browser, your computer first looks to see if it can find out locally where the resource is located.  It checks the "hosts" file on the computer and a few other locations.  It then sends the request to the resolving name server and waits back to receive the IP address of the resource.</p>
+
+<p>The resolving name server then checks its cache for the answer.  If it doesn't find it, it goes through the steps outlined above.</p>
+
+<p>Resolving name servers basically compress the requesting process for the end user.  The clients simply have to know to ask the resolving name servers where a resource is located and be confident that they will investigate and return the final answer.</p>
+
+<div name="zone-files" data-unique="zone-files"></div><h2 id="zone-files">Zone Files</h2>
+
+<hr>
+
+<p>We mentioned in the above process the idea of "zone files" and "records".</p>
+
+<p>Zone files are the way that name servers store information about the domains they know about.  Every domain that a name server knows about is stored in a zone file.  Most requests coming to the average name server are not something that the server will have zone files for.</p>
+
+<p>If it is configured to handle recursive queries, like a resolving name server, it will find out the answer and return it.  Otherwise, it will tell the requesting party where to look next.</p>
+
+<p>The more zone files that a name server has, the more requests it will be able to answer authoritatively.</p>
+
+<p>A zone file describes a DNS "zone", which is basically a subset of the entire DNS naming system.  It generally is used to configure just a single domain.  It can contain a number of records which define where resources are for the domain in question.</p>
+
+<p>The zone's <code>$ORIGIN</code> is a parameter equal to the zone's highest level of authority by default.</p>
+
+<p>So if a zone file is used to configure the "example.com." domain, the <code>$ORIGIN</code> would be set to <code>example.com.</code>.</p>
+
+<p>This is either configured at the top of the zone file or it can be defined in the DNS server's configuration file that references the zone file.  Either way, this parameter describes what the zone is going to be authoritative for.</p>
+
+<p>Similarly, the <code>$TTL</code> configures the "time to live" of the information it provides.  It is basically a timer.  A caching name server can use previously queried results to answer questions until the TTL value runs out.</p>
+
+<div name="record-types" data-unique="record-types"></div><h2 id="record-types">Record Types</h2>
+
+<hr>
+
+<p>Within the zone file, we can have many different record types.  We will go over some of the more common (or mandatory types) here.</p>
+
+<h3 id="soa-records">SOA Records</h3>
+
+<hr>
+
+<p>The Start of Authority, or SOA, record is a mandatory record in all zone files.  It must be the first real record in a file (although $ORIGIN or $TTL specifications may appear above).  It is also one of the most complex to understand.</p>
+
+<p>The start of authority record looks something like this:</p>
+
+<pre><span class="highlight">domain.com.</span>  IN SOA ns1.domain.com. admin.domain.com. (
+                                            12083   ; <span class="highlight">serial number</span>
+                                            3h      ; <span class="highlight">refresh interval</span>
+                                            30m     ; <span class="highlight">retry interval</span>
+                                            3w      ; <span class="highlight">exiry period</span>
+                                            1h      ; <span class="highlight">negative TTL</span>
+)
+</pre>
+
+<p>Let's explain what each part is for:</p>
+
+<ul>
+<li><p><strong>domain.com.</strong>: This is the root of the zone.  This specifies that the zone file is for the <code>domain.com.</code> domain.  Often, you'll see this replaced with <code>@</code>, which is just a placeholder that substitutes the contents of the <code>$ORIGIN</code> variable we learned about above.</p></li>
+<li><p><strong>IN SOA</strong>: The "IN" portion means internet (and will be present in many records).  The SOA is the indicator that this is a Start of Authority record.</p></li>
+<li><p><strong>ns1.domain.com.</strong>: This defines the primary master name server for this domain.  Name servers can either be master or slaves, and if dynamic DNS is configured one server needs to be a "primary master", which goes here.  If you haven't configured dynamic DNS, then this is just one of your master name servers.</p></li>
+<li><p><strong>admin.domain.com.</strong>: This is the email address of the administrator for this zone.  The "@" is replaced with a dot in the email address.  If the name portion of the email address normally has a dot in it, this is replace with a "\" in this part (your.name@domain.com becomes your\name.domain.com).</p></li>
+<li><p><strong>12083</strong>: This is the serial number for the zone file.  Every time you edit a zone file, you must increment this number for the zone file to propagate correctly.  Slave servers will check if the master server's serial number for a zone is larger than the one they have on their system.  If it is, it requests the new zone file, if not, it continues serving the original file.</p></li>
+<li><p><strong>3h</strong>: This is the refresh interval for the zone.  This is the amount of time that the slave will wait before polling the master for zone file changes.</p></li>
+<li><p><strong>30m</strong>: This is the retry interval for this zone.  If the slave cannot connect to the master when the refresh period is up, it will wait this amount of time and retry to poll the master.</p></li>
+<li><p><strong>3w</strong>: This is the expiry period.  If a slave name server has not been able to contact the master for this amount of time, it no longer returns responses as an authoritative source for this zone.</p></li>
+<li><p><strong>1h</strong>: This is the amount of time that the name server will cache a name error if it cannot find the requested name in this file.</p></li>
+</ul>
+
+<h3 id="a-and-aaaa-records">A and AAAA Records</h3>
+
+<hr>
+
+<p>Both of these records map a host to an IP address. The "A" record is used to map a host to an IPv4 IP address, while "AAAA" records are used to map a host to an IPv6 address.</p>
+
+<p>The general format of these records is this:</p>
+
+<pre><span class="highlight">host</span>     IN      A       <span class="highlight">IPv4_address</span>
+<span class="highlight">host</span>     IN      AAAA    <span class="highlight">IPv6_address</span>
+</pre>
+
+<p>So since our SOA record called out a primary master server at "ns1.domain.com", we would have to map this to an address to an IP address since "ns1.domain.com" is within the "domain.com" zone that this file is defining.</p>
+
+<p>The record could look something like this:</p>
+<pre class="code-pre "><code langs="">ns1     IN  A       111.222.111.222
+</code></pre>
+<p>Notice that we don't have to give the full name.  We can just give the host, without the FQDN and the DNS server will fill in the rest with the $ORIGIN value.  However, we could just as easily use the entire FQDN if we feel like being semantic:</p>
+<pre class="code-pre "><code langs="">ns1.domain.com.     IN  A       111.222.111.222
+</code></pre>
+<p>In most cases, this is where you'll define your web server as "www":</p>
+<pre class="code-pre "><code langs="">www     IN  A       222.222.222.222
+</code></pre>
+<p>We should also tell where the base domain resolves to.  We can do this like this:</p>
+<pre class="code-pre "><code langs="">domain.com.     IN  A       222.222.222.222
+</code></pre>
+<p>We could have used the "@" to refer to the base domain instead:</p>
+<pre class="code-pre "><code langs="">@       IN  A       222.222.222.222
+</code></pre>
+<p>We also have the option of resolving anything that under this domain that is not defined explicitly to this server too.  We can do this with the "*" wild card:</p>
+<pre class="code-pre "><code langs="">*       IN  A       222.222.222.222
+</code></pre>
+<p>All of these work just as well with AAAA records for IPv6 addresses.</p>
+
+<h3 id="cname-records">CNAME Records</h3>
+
+<hr>
+
+<p>CNAME records define an alias for canonical name for your server (one defined by an A or AAAA record).</p>
+
+<p>For instance, we could have an A name record defining the "server1" host and then use the "www" as an alias for this host:</p>
+<pre class="code-pre "><code langs="">server1     IN  A       111.111.111.111
+www         IN  CNAME   server1
+</code></pre>
+<p>Be aware that these aliases come with some performance losses because they require an additional query to the server.  Most of the time, the same result could be achieved by using additional A or AAAA records.</p>
+
+<p>One case when a CNAME is recommended is to provide an alias for a resource outside of the current zone.</p>
+
+<h3 id="mx-records">MX Records</h3>
+
+<hr>
+
+<p>MX records are used to define the mail exchanges that are used for the domain.  This helps email messages arrive at your mail server correctly.</p>
+
+<p>Unlike many other record types, mail records generally don't map a host to something, because they apply to the entire zone.  As such, they usually look like this:</p>
+<pre class="code-pre "><code langs="">        IN  MX  10   mail.domain.com.
+</code></pre>
+<p>Note that there is no host name at the beginning.</p>
+
+<p>Also note that there is an extra number in there.  This is the preference number that helps computers decide which server to send mail to if there are multiple mail servers defined.  Lower numbers have a higher priority.</p>
+
+<p>The MX record should generally point to a host defined by an A or AAAA record, and not one defined by a CNAME.</p>
+
+<p>So, let's say that we have two mail servers.  There would have to be records that look something like this:</p>
+<pre class="code-pre "><code langs="">        IN  MX  10  mail1.domain.com.
+        IN  MX  50  mail2.domain.com.
+mail1   IN  A       111.111.111.111
+mail2   IN  A       222.222.222.222
+</code></pre>
+<p>In this example, the "mail1" host is the preferred email exchange server.</p>
+
+<p>We could also write that like this:</p>
+<pre class="code-pre "><code langs="">        IN  MX  10  mail1
+        IN  MX  50  mail2
+mail1   IN  A       111.111.111.111
+mail2   IN  A       222.222.222.222
+</code></pre>
+<h3 id="ns-records">NS Records</h3>
+
+<hr>
+
+<p>This record type defines the name servers that are used for this zone.</p>
+
+<p>You may be wondering, "if the zone file resides on the name server, why does it need to reference itself?".  Part of what makes DNS so successful is its multiple levels of caching.  One reason for defining name servers within the zone file is that the zone file may be actually being served from a cached copy on another name server.  There are other reasons for needing the name servers defined on the name server itself, but we won't go into that here.</p>
+
+<p>Like the MX records, these are zone-wide parameters, so they do not take hosts either.  In general, they look like this:</p>
+<pre class="code-pre "><code langs="">        IN  NS     ns1.domain.com.
+        IN  NS     ns2.domain.com.
+</code></pre>
+<p>You should have at least two name servers defined in each zone file in order to operate correctly if there is a problem with one server.  Most DNS server software considers a zone file to be invalid if there is only a single name server.</p>
+
+<p>As always, include the mapping for the hosts with A or AAAA records:</p>
+<pre class="code-pre "><code langs="">        IN  NS     ns1.domain.com.
+        IN  NS     ns2.domain.com.
+ns1     IN  A      111.222.111.111
+ns2     IN  A      123.211.111.233
+</code></pre>
+<p>There are quite a few other record types you can use, but these are probably the most common types that you will come across.</p>
+
+<div name="conclusion" data-unique="conclusion"></div><h2 id="conclusion">Conclusion</h2>
+
+<hr>
+
+<p>You should now have a pretty good grasp on how DNS works.  While the general idea is relatively easy to grasp once you're familiar with the strategy, this is still something that can be difficult for inexperienced administrators to put into practice.</p>
+
+<p>For an overview over <a href="https://digitalocean.com/community/articles/how-to-set-up-a-host-name-with-digitalocean">how to set up domains within the DigitalOcean control panel</a>, check out this link.</p>
+
+<div class="author">By Justin Ellingwood</div>
+
+    </div>
+</div>
+
+<div class="tutorial-footer">
+  <div class="tutorial-footer-details">
+  <div class="section-content tutorial-public-actions">
+    <div class="share-subscribe-actions">
+      <div class="upvotes upvoted tutorial-upvote large-upvotes"><form data-upvotable="tutorial_1006" data-upvotable-type="tutorial" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=1006&upvote%5Bupvotable_type%5D=Tutorial" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="qlBgvwpN88VlL4Al3LPTEw5mH3FyUX0RO6NnJoFOwOPpgwk+M2EkSAwlgG5Z2KFxO8VrtLT3zPWn9ZxmFw8aBQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="" title="Do you find this tutorial helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count ">101</div></div>
+      <span class="meta-section opt-in-switch off signed-out-subscribe">
+  <span class="meta-label subscribe-label">
+    <span class="subscription-label subscribe">Subscribe</span>
+    <span class="subscription-label subscribed">Subscribed</span>
+  </span>
+  <span class="meta-value"><a data-toggle="modal" data-target="#sign-in-modal" class="mini-switch-container" href="javascript:void(0);"><div class="mini-switch off signed-out-subscribe"><div class="switch-handle"></div></div></a></span>
+</span>
+
+      <div class="sharing">
+  <a class="share-button" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#" data-toggle="modal" data-target="#share-modal">
+    <span class="icon icon-share-square"></span>
+    <span class="share-button-text">
+      Share
+    </span>
+  </a>
+</div>
+
+
+    </div>
+  </div>
+
+  <div class="section-content tutorial-contributors one">
+      <div class="tutorial-footer-user">
+        <div class="tutorial-footer-user-avatar-container">
+          <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+        </div>
+        <div class="user-info">
+          <div class="tutorial-user-type">Author:</div>
+          <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+    <div class="tutorial-series-container ">
+    <div class="section-content">
+
+      <h2 class="tutorial-series-heading">Tutorial Series</h2>
+
+
+          <div id="tutorial_series_6" class="tutorial-series ">
+            
+            <h3 class="series-title"><a href="https://www.digitalocean.com/community/tutorial_series/an-introduction-to-managing-dns">An Introduction to Managing DNS</a></h3>
+
+              <div class="description">
+                DNS, or the domain name system, is an essential component of modern internet communication.  It allows us to reference computers by names instead of IP addresses.  In this series, we will cover the basic ideas behind DNS so that you feel comfortable working with it.  Afterwards, we will walk through various ways that you can gain greater control over your domains and DNS resolution.
+              </div>
+            <ol class="tutorial-series-list">
+
+    <li class="active">
+      <h2><a href="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean.html">An Introduction to DNS Terminology, Components, and Concepts</a></h2>
+
+      <div class="feedable-date">February 18, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          101
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          9
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-dns-server-types-how-to-choose-the-right-dns-configuration">A Comparison of DNS Server Types:  How To Choose the Right DNS Configuration</a></h2>
+
+      <div class="feedable-date">June 30, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          21
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          3
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean">How To Set Up a Host Name with DigitalOcean</a></h2>
+
+      <div class="feedable-date">August 28, 2012</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          378
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          226
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/etel">Etel Sverdlov</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-caching-or-forwarding-dns-server-on-ubuntu-14-04">How To Configure Bind as a Caching or Forwarding DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">June 25, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          16
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          13
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-an-authoritative-only-dns-server-on-ubuntu-14-04">How To Configure Bind as an Authoritative-Only DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">June 27, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          16
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          37
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-14-04">How To Configure BIND as a Private Network DNS Server on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">August 12, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          33
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          15
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/manicas">Mitchell Anicas</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+    <li class="">
+      <h2><a href="https://www.digitalocean.com/community/tutorials/how-to-use-nsd-an-authoritative-only-dns-server-on-ubuntu-14-04">How To Use NSD, an Authoritative-Only DNS Server, on Ubuntu 14.04</a></h2>
+
+      <div class="feedable-date">July  3, 2014</div>
+      <div class="meta">
+        <div class="points">
+          <span class="icon-upvote-heart-small"></span>
+          2
+        </div>
+
+        <div class="response-count">
+          <span class="icon icon-new-comment"></span>
+          8
+        </div>
+
+          <span class="author">By <a href="https://www.digitalocean.com/community/users/jellingwood">Justin Ellingwood</a></span>
+      </div>
+      <div class="arrow-left"></div>
+    </li>
+</ol>
+
+          </div>
+    </div>
+  </div>
+
+  <div class="tutorial-ctas">
+  <div class="section-content">
+    <div class="cta-description">
+      <h2>Spin up an SSD cloud server in under a minute.</h2>
+
+      <p>Simple setup. Full root access. Straightforward pricing.</p>
+
+      <a class="cloud-tutorial-cta" href="https://www.digitalocean.com/?utm_medium=community&utm_source=community_gencta&utm_campaign=needaserver&utm_content=an-introduction-to-dns-terminology-components-and-concepts">Deploy Server</a>
+    </div>
+  </div>
+</div>
+    <div class="related-tutorials">
+    <div class="section-content">
+      <h2>Related Tutorials</h2>
+
+      <ul>
+        <li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/dns-tips-and-tricks">DNS Tips and Tricks</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/blueprint-how-ghost-migrated-from-dedicated-servers-to-digitalocean">Blueprint: How Ghost Migrated From Dedicated Servers to DigitalOcean</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-the-unbound-caching-dns-resolver-on-freebsd-10-1">How To Set Up the Unbound Caching DNS Resolver on FreeBSD 10.1</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/how-to-configure-dns-replication-on-a-slave-powerdns-server-on-ubuntu-14-04">How To Configure DNS Replication on a Slave PowerDNS Server on Ubuntu 14.04</a></li>
+<li><a class="related-link" href="https://www.digitalocean.com/community/tutorials/building-for-production-web-applications-deploying">Building for Production: Web Applications — Deploying</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="content-comments">
+  <div class="section-content">
+    <div class="tutorial commentable" id="tutorial_1006">
+
+  <div class="comments-header">
+    <h4 class="comments-count"><span>9 Comments</span></h4>
+  </div>
+
+  <div class="response no-avatar  response-form">
+
+  <div class="js-display-on-error flash error hidden"></div>
+  <form class="content-form disabled-form" id="new_comment" action="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓" disabled="disabled">
+    <div class="meltdown_wrap" style="height: auto;"><div class="meltdown_topmargin"></div><div class="meltdown_bar"><ul class="meltdown_controls meltdown_controls_preview"><li class="meltdown_control-preview meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Toggle Preview"><span>Preview</span></li></ul><div class="preview-header">Markdown Preview</div><ul class="meltdown_controls meltdown_controls_main"><li class="meltdown_control-bold meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Bold"><span unselectable="on">B</span></li><li class="meltdown_control-italics meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Italics"><span unselectable="on">I</span></li><li class="meltdown_control-h1 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 1"><span unselectable="on">H1</span></li><li class="meltdown_control-h2 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 2"><span unselectable="on">H2</span></li><li class="meltdown_control-h3 meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Header 3"><span unselectable="on">H3</span></li><li class="meltdown_control-ul meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Unordered List"><span unselectable="on">UL</span></li><li class="meltdown_control-ol meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Ordered List"><span unselectable="on">OL</span></li><li class="meltdown_control-link meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Link"><span unselectable="on">Link</span></li><li class="meltdown_control-code meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Code"><span unselectable="on">Code</span></li><li class="meltdown_control-highlight meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Highlight"><span unselectable="on">Highlight</span></li><li class="meltdown_control-table meltdown_control meltdown_controlbutton disabled" title="" data-original-title="Table"><span unselectable="on">Table</span></li></ul></div><div class="meltdown_editor-wrap"><div class="meltdown_editor-deco"><textarea name="comment[content]" id="comment_content" placeholder="Leave a comment..." class="js-comment-content tutorial-comment-field meltdown_editor" data-markdown="true" disabled="disabled" style="overflow: hidden; word-wrap: break-word; resize: none; height: 120px;"></textarea></div></div><div class="meltdown_preview-wrap"><div class="meltdown_preview-wrap2"><div class="meltdown_preview-error-message">Could not load preview. <a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#">Try again</a></div><div class="meltdown_preview-loading-message">Loading preview...</div><div class="meltdown_preview content-body"></div></div></div><div class="meltdown_bottommargin"></div></div>
+
+      <div class="log-in-notice "><a href="https://www.digitalocean.com/community/auth/digitalocean">Log In to Comment</a></div>
+
+    <div class="clearfix"></div>
+</form></div>
+
+
+  <div class="comments">
+    <ul class="response-list">
+          <a class="hidden" rel="nofollow" data-remote="true" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts/comments">Load</a>
+    <li id="comment_10447" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/robin-joseph"><img alt="robin.joseph" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/526548428a1faae1c23de4d952ab232e" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/robin-joseph">robin.joseph</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10447">March  1, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Technically, 111.222.333.444 isn't a valid IPv4 address since each grouping of numbers is 8 bits. Each has a range of 0-255.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_10447" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=10447&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="lt19qnQIpGEEKl0SI6N1u5sq+VFF85lcItl5oOXH5ZfVDhQrTSRz7G0gXVmmyAfZromNlINVKLi+j4Lgc4Y/cQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10447" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_10447">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_10447"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_10555" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/luissquall"><img alt="luissquall" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/b1fadd140a4c436c73e43446ff0ff9bf" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/luissquall">luissquall</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10555">March  3, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Great article! 
+
+Just a minor fix, trailing dot is missing in the CNAME RDATA of MX &amp; NS Records examples, e.g.
+
+        IN  MX  10  mail1.domain.com.
+
+        IN  NS     ns1.domain.com.</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_10555" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=10555&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="lSL5J7lvsLM7JmrgVV9dqkGW7P99lSkw8M0ZWT8BNO3W8ZCmgENnPlIsaqvQNC/IdDWYOrszmNRsm+IZqUDuCw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10555" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_10555">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_10555"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_10559" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/jellingwood"><div class="mod-avatar mod-avatar-small"><img alt="jellingwood" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/60d901f61a6146e14a3e989bc1f4ef11" width="80" height="80"><span class="mod-star" title="" data-toggle="tooltip" data-container="body" data-original-title="MOD"><span class="mod-star-icon"></span></span></div></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/jellingwood">jellingwood</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10559">March  3, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body legacy">Thank you both for the feedback.  You are both correct, and I've updated the article accordingly.  Thanks!</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_10559" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=10559&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="UYUNsyMie2PbJ0P02oMD43euM2hif3aW2v0NqSOZXUMSVmQyGg6s7rItQ79f6HGBQg1HraTZx3JGq/bptdiHpQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=10559" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_10559">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_10559"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_14739" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/tzickell"><img alt="tzickell" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/bd08547081a0472f0de13fae7d384295" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/tzickell">tzickell</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=14739">July  8, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Without question the best DNS available. Currently, the pricing has changed actually to make it more accessible. You can get a domain on the full a anycast DynECT light platform starting at five dollars a month<br>
+you are</p>
+
+<p>I am impressed with the unicast DNS system you have set up. However honestly there are better options than this. Of course, it depends on what you want to spend and what type of uptime guarantee you need.</p>
+
+<p>If you are hosting a large group of clients managed DNS by third-party is the way to go 9/10 times including adding a second managed DNS server to complete the redundancy.<br>
+DynECT is the world's best DNS if you ask me. I mix it EdgeCast route DNS both are able to resolve GEO-IP and make a blazing fast extremely redundant setup.</p>
+
+<p>Other very fast options are to use DNS made easy if you need to secure it run AWS route 53 as the secondary DNS.</p>
+
+<p>To give you an idea DNS made easy is considered one of the fastest DNS service in the world up there with DynECT, edge cast &amp; ultraDNS.</p>
+
+<p>If you have a lot of clients spend USD25 a year on 10 domains and 30 million queries per month if you need a larger amount USD50 a year gets you 25 domains 50 million queries per month with failover.</p>
+
+<p>AWS route 53 is unbelievably capable for its price. USD.50 a domain a dollar per 10 million queries. (It is fast and reliable but not as fast and reliable as DNS made easy)<br>
+Last but not least Akamai's DNS is sold through Zerego at USD25 a month for 25 domains. <br>
+DynECT light has dropped dramatically in price getting you a single domain with just under 1 million queries per second at roughly USD10 a month.</p>
+
+<p>DNS is tracked continuously by SolveDNS you can type a name server into the top right search box and it will give you the stats on it and you can also look at all any cast managed DNS hosting companies speeds.  </p>
+
+<p>Last but not least remember to lower your TTL (time to live) the more queries you will use for the same amount of traffic. I know people that set their TTL for 60 min. (that is a good time by the way enough to cache and enough to change quickly) and a site with 20,000 unique visitors will be able to deal with under 1 million queries per month.</p>
+
+<p>I should tell you that DynECT enterprise or just what they call DynECT DNS is about USD200 a month with 1 million queries a month you can lower the price and discuss the queries which are much less than you would think because it is an enterprise plan. When all is said and done if you want the ability to route CDN's through Geo-IP you are looking at somewhere between  $1,000 or $2,000 month.</p>
+
+<p>With UltraDNS you can purchase their SMB offering for USD30 a month with 2 million queries and 50 domains.</p>
+
+<p>For enterprise UltraDNS the price begins at USD1500 a month.<br>
+Edge Cast route is not as sophisticated as DynECT or UltraDNS however it offers Geo-IP routing, fail over and load balancing for under USD100 a month.</p>
+
+<p>The fastest are DynECT &amp; edge cast followed by DNS made easy they are all in the under 10 ms club which is something that cannot be said for very many DNS hosts. No matter what you do to this system you can get something much faster for USD25 a year</p>
+
+<p>Go to solveDNS.com to see statistics and run speed tests on any name server you want.<br>
+Remember  CloudFlare offers anycast DNS for free however it has terrible uptime and is not very fast most of the time because the entire anycast network absorbs all the attacks. Your better off using a system described above and having no issues with your DNS. the reason it is fast and the site I have referenced is because they test for only 2 to 3 min. a month not of the other services use their pops as a punching bag for free Subscribers and paid subscribers wanting the DDOS protection.</p>
+
+<p>PS if you want to have a remarkably powerful firewall for very little money cloudproxy.sucuri.net is an amazing WAF and makes an excellent match with digital ocean.</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_14739" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=14739&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="sGmqkvcGsj6yuIz/xVneDeWA8Q5LIryEIJifwsotcjPzusMTzipls9uyjLRAMqxv0COFy42EDWC8zmSCXGyo1Q==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=14739" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_14739">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_14739"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_15113" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/trycatch9264"><img alt="trycatch9264" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/8e3bccd5282f9294825d7ceb0d2a5e4d" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/trycatch9264">trycatch9264</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=15113">July 17, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Simple and Clear, easy to understand, Great article!<br>
+Thank you Justin!</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_15113" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=15113&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="rRSRWdWEmD3h+KLIW8yj/XJcN/0XIPru4Y2teKvk/QLux/jY7KhPsIjyooPep9GfR/9DONGGSwp921Y4PaUn5A==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=15113" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_15113">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_15113"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_15119" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/vincent-osullivan"><img alt="vincent.osullivan" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/c2ace7e5849fa528bfe93f25c79d5ce1" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/vincent-osullivan">vincent.osullivan</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=15119">July 17, 2014</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>I think you may have meant "Pedantic" instead of "Semantic" above?<br>
+Great article!</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_15119" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=15119&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="rYbK0zen7PylD+OsoMOGIBAggjmYDzGGGRk/6sdDPFzuVaNSDos7ccwF4+clqPRCJYP2/F6pgGKFT8SqUQLmug==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=15119" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_15119">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_15119"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_31157" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/sashashakun"><img alt="sashashakun" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/afa8a27fd2acf06d5bb6c5d67c239c2a" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/sashashakun">sashashakun</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=31157">April 15, 2015</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Hello! Thank you for the article, but as I see you may have a problem with FB sharing: http://tinypic.com/r/ilb0qw/8<br>
+Sorry for language)<br>
+Translation of the pic's text: <br>
+"The specified URL-address configuration is not allowed Applications: One or more of the URL-address is blocked application settings. The address must match the address of the website or canvas, or domain should be a subdomain of a domain application."</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_31157" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=31157&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="LOrZ/Ifu2UC+QSLqQeXxPYE92AlTvRV+r/DVrUuErN1vObB9vsIOzddLIqHEjoNftJ6szJUbpJozpi7t3cV2Ow==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=31157" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_31157">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_31157"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_31862" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/pabloassembler-c1b93074-205f-4a84-8ece-df9d42c01ee4"><img alt="PabloAssembler" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/3559a24c480e95d131058a401d3ae6f3" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/pabloassembler-c1b93074-205f-4a84-8ece-df9d42c01ee4">PabloAssembler</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=31862">May  2, 2015</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Hi. Great article! In the <strong>Zone File</strong> explanation, shouldn't it be <em>"...about the domains they have authority over"</em> or <em>"... are authoritative"</em> instead of <em>"...about the domains they know about"</em> ?</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_31862" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=31862&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="ZEV/+NT98Bf7P/uJv73rKahDsmbHbE+JwFeudB814U0nlhZ57dEnmpI1+8I61plLneDGowHK/m1cAVU0iXQ7qw==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=31862" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_31862">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_31862"></div>
+</div>
+    </div>
+
+  </li>
+
+      <li id="comment_37451" data-level="0" class="comment-container">
+    <div class="response    " data-highlight="">
+      <div class="response-avatar comment-response-avatar">
+        <a href="https://www.digitalocean.com/community/users/rami2"><img alt="rami2" class="avatar avatar-small" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/b986c01451594c6314d298217d216bbb" width="80" height="80"></a>
+      </div>
+
+      <div>
+        <span class="response-name"><a class="username" href="https://www.digitalocean.com/community/users/rami2">rami2</a></span>
+        <span class="response-time"><a rel="nofollow" class="post-time-link" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=37451">September 15, 2015</a></span>
+
+        
+      </div>
+
+          <div class="response-body content-body "><p>Hi, in the process off learning all this from scratch i wrote a tutorial for setting up multiple Wordpress sites which people may find helpful, some things are missing from the digital ocean tutorials which are included here.</p>
+
+<p>Setting-up-3-wordpress-sites-on-Apache-server-and-Ubuntu-14-04</p>
+
+<p>https://sunnahmuakadasupplementary.files.wordpress.com/2015/09/setting-up-3-wordpress-sites-on-apache-server-and-ubuntu-14-04.pdf</p>
+</div>
+
+      
+
+      <div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+
+
+      <div class="content-actions">
+  <div class="comment-actions">
+    <div class="upvotes comment-upvote"><form data-upvotable="comment_37451" data-upvotable-type="comment" class="upvote-form upvote signed-out-upvote" action="https://www.digitalocean.com/community/upvotes/toggle?upvote%5Bupvotable_id%5D=37451&upvote%5Bupvotable_type%5D=Comment" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="FJfrvFCsojRsUWakmz6TKRqrAqTjII4ZfPDlwWo3arNXRII9aYB1uQVbZu8eVeFLLwh2YSWGP/3gph6B/HawVQ==">
+    <button type="submit" disabled="disabled" data-toggle="modal" data-target="#sign-in-modal">
+      <span class="icon-upvote-heart-small upvote-heart" data-toggle="modal" data-target="#sign-in-modal" data-return-url="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts?comment=37451" title="Do you find this comment helpful? Show the author by Hearting it!" data-placement="top"></span>
+    </button>
+
+</form><span class="upvote-text"><span class="hearted-text">Hearted</span><span class="heart-text">Heart</span></span><div class="upvote-count hidden">0</div></div>
+
+
+    
+    
+    
+  </div>
+
+  <div class="comment-moderation-actions">
+    <ul class="comment-moderation-actions-list ">
+      
+
+
+
+
+
+
+    </ul>
+  </div>
+</div>
+
+
+      <div class="clear"></div>
+    </div>
+    <div class="response-comments">
+      <div class="comment commentable" id="comment_37451">
+
+
+  <div class="comments">
+    <ul class="response-list">
+      
+
+
+
+    </ul>
+  </div>
+
+
+  <div id="reply_anchor_comment_37451"></div>
+</div>
+    </div>
+
+  </li></ul>
+
+      <div class="comments-spinner" style="display: none;"><div class="spinner spinner-large">
+  <div class="bounce1"></div>
+  <div class="bounce2"></div>
+  <div class="bounce3"></div>
+  
+</div>
+</div>
+  </div>
+
+  <div class="load-more-container"></div>
+</div>
+
+
+  </div>
+</div>
+
+<div class="creative-commons">
+  <a class="creative-commons-image" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img rel="license" alt="Creative Commons License" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/creativecommons-654928f5ebfbb75f4543af8903eabfe4.png"></a>
+    <div class="license-text">This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</div>
+</div>
+
+
+
+
+
+        <div class="clearfix"></div>
+      </div>
+
+      <footer class="footer">
+  <div class="footer-icon">
+    <span class="icon icon-sammy"></span>
+  </div>
+
+  <div class="copyright">
+    Copyright © 2016 DigitalOcean™ Inc.
+  </div>
+
+  <ul class="main-nav-links">
+    <li><a href="https://www.digitalocean.com/community">Community</a></li>
+    <li><a href="https://www.digitalocean.com/community/tutorials">Tutorials</a></li>
+    <li><a href="https://www.digitalocean.com/community/questions">Questions</a></li>
+    <li><a href="https://www.digitalocean.com/community/projects">Projects</a></li>
+    <li><a href="https://www.digitalocean.com/community/tags">Tags</a></li>
+    <li>
+      <a href="https://www.digitalocean.com/community/tutorials/feed">
+        RSS <span class="icon-rss"></span>
+</a>    </li>
+  </ul>
+
+  <br>
+
+  <ul class="secondary-nav-links">
+
+    <li><a href="https://www.digitalocean.com/legal/terms/">Terms, Privacy, &amp; Copyright</a></li>
+    <li><a href="https://www.digitalocean.com/security/">Security</a></li>
+      <li><a data-toggle="modal" data-target="#sign-in-modal" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#">Report a Bug</a></li>
+    <li><a href="https://www.digitalocean.com/community/get-paid-to-write">Get Paid to Write</a></li>
+  </ul>
+</footer>
+
+
+
+
+
+    <div id="sign-in-modal" class="modal fade mini-modal" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Sign Up</h1>
+        <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+      </div>
+      <div class="modal-body">
+        <div class="sign-in-message">Not so fast, you must have an account before you can do that.</div>
+
+        <div class="sign-in-modal-actions">
+          <a class="sign-in-link button blue-button" data-default-url="/community/auth/digitalocean" href="https://www.digitalocean.com/community/auth/digitalocean">Log In</a>
+          <a class="sign-up-link button green-button" data-default-url="/community/auth/digitalocean?display=sessionless+register" href="https://www.digitalocean.com/community/auth/digitalocean?display=sessionless+register">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+  <script>
+    $(function() {
+      init_sharing();
+      new NewsletterSignup();
+      new GrowableMarkdown({ target: '[data-growable-markdown]' });
+    });
+  </script>
+
+  <div id="report-a-bug-modal" class="modal fade mini-modal" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Report a Bug</h1>
+          <a class="close-button" data-dismiss="modal" href=""><span class="icon icon-close-light"></span></a>
+        </div>
+        <div class="modal-body">
+          <div class="report-a-bug-message text-center">Use this form to report bugs related to the Community</div>
+          <div class="report-a-bug-actions do-form">
+            <div class="form-wrap">
+              <form class="new_bug_report" id="new_bug_report" action="https://www.digitalocean.com/community/bug_reports" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="qlBgvwpN88VlL4Al3LPTEw5mH3FyUX0RO6NnJoFOwOPpgwk+M2EkSAwlgG5Z2KFxO8VrtLT3zPWn9ZxmFw8aBQ==">
+                <fieldset>
+                  <div class="field">
+                    <input placeholder="Name" type="text" name="bug_report[name]" id="bug_report_name">
+                  </div>
+                  <div class="field">
+                    <input placeholder="Email" required="required" type="text" name="bug_report[email]" id="bug_report_email">
+                  </div>
+                  <div class="field">
+                      <textarea placeholder="Message" required="required" name="bug_report[message]" id="bug_report_message" style="overflow: hidden; word-wrap: break-word; resize: none; height: 125px;"></textarea>
+                  </div>
+
+                  <div class="field actions">
+                    <input type="submit" name="commit" value="Submit" class="button">
+                  </div>
+                </fieldset>
+</form>            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+  
+
+<textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; -webkit-transition: none; transition: none; height: 0px !important; min-height: 0px !important; font-family: proxima-nova, sans-serif; font-size: 17px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; word-spacing: 0px; text-indent: 0px; line-height: 23.7999992370605px; width: 58px;" class="autosizejs" id="autosizejs"></textarea><a id="scrollUp" href="https://www.digitalocean.com/community/tutorials/an-introduction-to-dns-terminology-components-and-concepts#top" style="position: fixed; z-index: 2147483647;">Scroll to top</a><div id="scrollUp-active" style="position: absolute; top: 300px; width: 100%; border-top-width: 1px; border-top-style: dotted; border-top-color: rgb(0, 255, 255); z-index: 2147483647;"></div><script type="text/javascript" id="">(function(){var a=window._fbq||(window._fbq=[]);if(!a.loaded){var b=document.createElement("script");b.async=!0;b.src="//connect.facebook.net/en_US/fbds.js";var c=document.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c);a.loaded=!0}a.push(["addPixelId","1428881624071898"])})();window._fbq=window._fbq||[];window._fbq.push(["track","PixelInitialized",{}]);</script>
+<noscript>&lt;img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=1428881624071898&amp;amp;ev=PixelInitialized"&gt;</noscript><script type="text/javascript" id="">(function(b,c,e,g,d){var f,a;b[d]=b[d]||[];f=function(){var a={ti:"4047822"};a.q=b[d];b[d]=new UET(a);b[d].push("pageLoad")};a=c.createElement(e);a.src=g;a.async=1;a.onload=a.onreadystatechange=function(){var b=this.readyState;b&&"loaded"!==b&&"complete"!==b||(f(),a.onload=a.onreadystatechange=null)};c=c.getElementsByTagName(e)[0];c.parentNode.insertBefore(a,c)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script><noscript>&lt;img src="//bat.bing.com/action/0?ti=4047822&amp;amp;Ver=2" height="0" width="0" style="display:none; visibility: hidden;"&gt;</noscript><div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/xd_arbiter.html" style="border: none;"></iframe></div></div></div><div style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.2068802365101874"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.1874165483750403" width="0" height="0" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/0"><img style="width:0px; height:0px; display:none; visibility:hidden;" id="batBeacon0.9388330902438611" width="0" height="0" src="./An Introduction to DNS Terminology, Components, and Concepts _ DigitalOcean_files/0(1)"></div><script type="text/javascript" id="">"undefined"!==typeof window.analytics&&analytics.track("dwell",{time:"1 minute"});</script><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"></iframe><script type="text/javascript" id="">"undefined"!==typeof window.analytics&&analytics.track("dwell",{time:"5 minute"});</script></body></html>
