@@ -1,0 +1,7 @@
+.latest_cont { float:left;margin-bottom:10px; width:100%; }
+.latest_text div { width:165px; height:85px; display:table-cell; vertical-align:middle; line-height:18px; font-size:14px; }
+.latest_text { float:right; }
+.latest_cont a { color:#666; }
+.latest_cont a:hover { color:#0099cc; }
+.latest_cont img { width:125px; }
+.content :first-child { margin-top:0 !important; }

@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<!-- saved from url=(0044)http://pclt.cis.yale.edu/pclt/COMM/TCPIP.HTM -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<title> Introduction to TCP/IP </title>
+<!-- SpHyDir the Web document manager created this page.
+     SpHyDir is another fine product of PC Lube and Tune.
+     See http://pclt.cis.yale.edu/pclt/default.htm for more info.
+     Under the SpHyDir license you must leave this notice in files. -->
+<script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script><style type="text/css"></style></head>
+
+<body>
+<!-- SpHyDir Ignore -->
+<p><i>2 Feb 1995 </i></p>
+<!-- SpHyDir -->
+<h1><a name="@Introduction_to_TCP/IP">Introduction to TCP/IP </a></h1>
+
+<p>Summary: TCP and IP were developed by a Department of Defense
+(DOD) research project to connect a number different networks
+designed by different vendors into a network of networks (the
+"Internet"). It was initially successful because it
+delivered a few basic services that everyone needs (file
+transfer, electronic mail, remote logon) across a very large
+number of client and server systems. Several computers in a small
+department can use TCP/IP (along with other protocols) on a
+single LAN. The IP component provides routing from the department
+to the enterprise network, then to regional networks, and finally
+to the global Internet. On the battlefield a communications
+network will sustain damage, so the DOD designed TCP/IP to be
+robust and automatically recover from any node or phone line
+failure. This design allows the construction of very large
+networks with less central management. However, because of the
+automatic recovery, network problems can go undiagnosed and
+uncorrected for long periods of time. </p>
+
+<p>As with all other communications protocol, TCP/IP is composed
+of layers: </p>
+
+<ul>
+    <li><b>IP</b> - is responsible for moving packet of data from
+        node to node. IP forwards each packet based on a four
+        byte destination address (the IP number). The Internet
+        authorities assign ranges of numbers to different
+        organizations. The organizations assign groups of their
+        numbers to departments. IP operates on gateway machines
+        that move data from department to organization to region
+        and then around the world. </li>
+    <li><b>TCP</b> - is responsible for verifying the correct
+        delivery of data from client to server. Data can be lost
+        in the intermediate network. TCP adds support to detect
+        errors or lost data and to trigger retransmission until
+        the data is correctly and completely received. </li>
+    <li><b>Sockets - </b>is a name given to the package of
+        subroutines that provide access to TCP/IP on most
+        systems. </li>
+</ul>
+
+<h2><a name="@Network_of_Lowest_Bidders">Network of Lowest
+Bidders </a></h2>
+
+<p>The Army puts out a bid on a computer and DEC wins the bid.
+The Air Force puts out a bid and IBM wins. The Navy bid is won by
+Unisys. Then the President decides to invade Grenada and the
+armed forces discover that their computers cannot talk to each
+other. The DOD must build a "network" out of systems
+each of which, by law, was delivered by the lowest bidder on a
+single contract. </p>
+
+<p><img src="./Introduction to TCP_IP_files/ipdept.gif" alt="ipdept.gif" width="414" height="251"> </p>
+
+<p>The Internet Protocol was developed to create a Network of
+Networks (the "Internet"). Individual machines are
+first connected to a LAN (Ethernet or Token Ring). TCP/IP shares
+the LAN with other uses (a Novell file server, Windows for
+Workgroups peer systems). One device provides the TCP/IP
+connection between the LAN and the rest of the world. </p>
+
+<p>To insure that all types of systems from all vendors can
+communicate, TCP/IP is absolutely standardized on the LAN.
+However, larger networks based on long distances and phone lines
+are more volatile. In the US, many large corporations would wish
+to reuse large internal networks based on IBM's SNA. In Europe,
+the national phone companies traditionally standardize on X.25.
+However, the sudden explosion of high speed microprocessors,
+fiber optics, and digital phone systems has created a burst of
+new options: ISDN, frame relay, FDDI, Asynchronous Transfer Mode
+(ATM). New technologies arise and become obsolete within a few
+years. With cable TV and phone companies competing to build the
+National Information Superhighway, no single standard can govern
+citywide, nationwide, or worldwide communications. </p>
+
+<p>The original design of TCP/IP as a Network of Networks fits
+nicely within the current technological uncertainty. TCP/IP data
+can be sent across a LAN, or it can be carried within an internal
+corporate SNA network, or it can piggyback on the cable TV
+service. Furthermore, machines connected to any of these networks
+can communicate to any other network through gateways supplied by
+the network vendor. </p>
+
+<h2><a name="@Addresses">Addresses </a></h2>
+
+<p>Each technology has its own convention for transmitting
+messages between two machines within the same network. On a LAN,
+messages are sent between machines by supplying the six byte
+unique identifier (the "MAC" address). In an SNA
+network, every machine has Logical Units with their own network
+address. DECNET, Appletalk, and Novell IPX all have a scheme for
+assigning numbers to each local network and to each workstation
+attached to the network. </p>
+
+<p>On top of these local or vendor specific network addresses,
+TCP/IP assigns a unique number to every workstation in the world.
+This "IP number" is a four byte value that, by
+convention, is expressed by converting each byte into a decimal
+number (0 to 255) and separating the bytes with a period. For
+example, the PC Lube and Tune server is 130.132.59.234. </p>
+
+<p>An organization begins by sending electronic mail to
+Hostmaster@INTERNIC.NET requesting assignment of a network
+number. It is still possible for almost anyone to get assignment
+of a number for a small "Class C" network in which the
+first three bytes identify the network and the last byte
+identifies the individual computer. The author followed this
+procedure and was assigned the numbers 192.35.91.* for a network
+of computers at his house. Larger organizations can get a
+"Class B" network where the first two bytes identify
+the network and the last two bytes identify each of up to 64
+thousand individual workstations. Yale's Class B network is
+130.132, so all computers with IP address 130.132.*.* are
+connected through Yale. </p>
+
+<p>The organization then connects to the Internet through one of
+a dozen regional or specialized network suppliers. The network
+vendor is given the subscriber network number and adds it to the
+routing configuration in its own machines and those of the other
+major network suppliers. </p>
+
+<p>There is no mathematical formula that translates the numbers
+192.35.91 or 130.132 into "Yale University" or
+"New Haven, CT." The machines that manage large
+regional networks or the central Internet routers managed by the
+National Science Foundation can only locate these networks by
+looking each network number up in a table. There are potentially
+thousands of Class B networks, and millions of Class C networks,
+but computer memory costs are low, so the tables are reasonable.
+Customers that connect to the Internet, even customers as large
+as IBM, do not need to maintain any information on other
+networks. They send all external data to the regional carrier to
+which they subscribe, and the regional carrier maintains the
+tables and does the appropriate routing. </p>
+
+<p>New Haven is in a border state, split 50-50 between the
+Yankees and the Red Sox. In this spirit, Yale recently switched
+its connection from the Middle Atlantic regional network to the
+New England carrier. When the switch occurred, tables in the
+other regional areas and in the national spine had to be updated,
+so that traffic for 130.132 was routed through Boston instead of
+New Jersey. The large network carriers handle the paperwork and
+can perform such a switch given sufficient notice. During a
+conversion period, the university was connected to both networks
+so that messages could arrive through either path. </p>
+
+<h2><a name="@Subnets">Subnets </a></h2>
+
+<p>Although the individual subscribers do not need to tabulate
+network numbers or provide explicit routing, it is convenient for
+most Class B networks to be internally managed as a much smaller
+and simpler version of the larger network organizations. It is
+common to subdivide the two bytes available for internal
+assignment into a one byte department number and a one byte
+workstation ID. </p>
+
+<p><img src="./Introduction to TCP_IP_files/classb.gif" alt="classb.gif" width="452" height="278"> </p>
+
+<p>The enterprise network is built using commercially available
+TCP/IP router boxes. Each router has small tables with 255
+entries to translate the one byte department number into
+selection of a destination Ethernet connected to one of the
+routers. Messages to the PC Lube and Tune server (130.132.59.234)
+are sent through the national and New England regional networks
+based on the 130.132 part of the number. Arriving at Yale, the 59
+department ID selects an Ethernet connector in the C&amp; IS
+building. The 234 selects a particular workstation on that LAN.
+The Yale network must be updated as new Ethernets and departments
+are added, but it is not effected by changes outside the
+university or the movement of machines within the department. </p>
+
+<h2><a name="@A_Uncertain_Path">A Uncertain Path </a></h2>
+
+<p>Every time a message arrives at an IP router, it makes an
+individual decision about where to send it next. There is concept
+of a session with a preselected path for all traffic. Consider a
+company with facilities in New York, Los Angeles, Chicago and
+Atlanta. It could build a network from four phone lines forming a
+loop (NY to Chicago to LA to Atlanta to NY). A message arriving
+at the NY router could go to LA via either Chicago or Atlanta.
+The reply could come back the other way. </p>
+
+<p>How does the router make a decision between routes? There is
+no correct answer. Traffic could be routed by the
+"clockwise" algorithm (go NY to Atlanta, LA to
+Chicago). The routers could alternate, sending one message to
+Atlanta and the next to Chicago. More sophisticated routing
+measures traffic patterns and sends data through the least busy
+link. </p>
+
+<p>If one phone line in this network breaks down, traffic can
+still reach its destination through a roundabout path. After
+losing the NY to Chicago line, data can be sent NY to Atlanta to
+LA to Chicago. This provides continued service though with
+degraded performance. This kind of recovery is the primary design
+feature of IP. The loss of the line is immediately detected by
+the routers in NY and Chicago, but somehow this information must
+be sent to the other nodes. Otherwise, LA could continue to send
+NY messages through Chicago, where they arrive at a "dead
+end." Each network adopts some Router Protocol which
+periodically updates the routing tables throughout the network
+with information about changes in route status. </p>
+
+<p>If the size of the network grows, then the complexity of the
+routing updates will increase as will the cost of transmitting
+them. Building a single network that covers the entire US would
+be unreasonably complicated. Fortunately, the Internet is
+designed as a Network of Networks. This means that loops and
+redundancy are built into each regional carrier. The regional
+network handles its own problems and reroutes messages
+internally. Its Router Protocol updates the tables in its own
+routers, but no routing updates need to propagate from a regional
+carrier to the NSF spine or to the other regions (unless, of
+course, a subscriber switches permanently from one region to
+another). </p>
+
+<h2><a name="@Undiagnosed_Problems">Undiagnosed Problems </a></h2>
+
+<p>IBM designs its SNA networks to be centrally managed. If any
+error occurs, it is reported to the network authorities. By
+design, any error is a problem that should be corrected or
+repaired. IP networks, however, were designed to be robust. In
+battlefield conditions, the loss of a node or line is a normal
+circumstance. Casualties can be sorted out later on, but the
+network must stay up. So IP networks are robust. They
+automatically (and silently) reconfigure themselves when
+something goes wrong. If there is enough redundancy built into
+the system, then communication is maintained. </p>
+
+<p>In 1975 when SNA was designed, such redundancy would be
+prohibitively expensive, or it might have been argued that only
+the Defense Department could afford it. Today, however, simple
+routers cost no more than a PC. However, the TCP/IP design that,
+"Errors are normal and can be largely ignored,"
+produces problems of its own. </p>
+
+<p>Data traffic is frequently organized around "hubs,"
+much like airline traffic. One could imagine an IP router in
+Atlanta routing messages for smaller cities throughout the
+Southeast. The problem is that data arrives without a
+reservation. Airline companies experience the problem around
+major events, like the Super Bowl. Just before the game, everyone
+wants to fly into the city. After the game, everyone wants to fly
+out. Imbalance occurs on the network when something new gets
+advertised. Adam Curry announced the server at
+"mtv.com" and his regional carrier was swamped with
+traffic the next day. The problem is that messages come in from
+the entire world over high speed lines, but they go out to
+mtv.com over what was then a slow speed phone line. </p>
+
+<p>Occasionally a snow storm cancels flights and airports fill up
+with stranded passengers. Many go off to hotels in town. When
+data arrives at a congested router, there is no place to send the
+overflow. Excess packets are simply discarded. It becomes the
+responsibility of the sender to retry the data a few seconds
+later and to persist until it finally gets through. This recovery
+is provided by the TCP component of the Internet protocol. </p>
+
+<p>TCP was designed to recover from node or line failures where
+the network propagates routing table changes to all router nodes.
+Since the update takes some time, TCP is slow to initiate
+recovery. The TCP algorithms are not tuned to optimally handle
+packet loss due to traffic congestion. Instead, the traditional
+Internet response to traffic problems has been to increase the
+speed of lines and equipment in order to say ahead of growth in
+demand. </p>
+
+<p>TCP treats the data as a stream of bytes. It logically assigns
+a sequence number to each byte. The TCP packet has a header that
+says, in effect, "This packet starts with byte 379642 and
+contains 200 bytes of data." The receiver can detect missing
+or incorrectly sequenced packets. TCP acknowledges data that has
+been received and retransmits data that has been lost. The TCP
+design means that error recovery is done end-to-end between the
+Client and Server machine. There is no formal standard for
+tracking problems in the middle of the network, though each
+network has adopted some ad hoc tools. </p>
+
+<h2><a name="@Need_to_Know">Need to Know </a></h2>
+
+<p>There are three levels of TCP/IP knowledge. Those who
+administer a regional or national network must design a system of
+long distance phone lines, dedicated routing devices, and very
+large configuration files. They must know the IP numbers and
+physical locations of thousands of subscriber networks. They must
+also have a formal network monitor strategy to detect problems
+and respond quickly. </p>
+
+<p>Each large company or university that subscribes to the
+Internet must have an intermediate level of network organization
+and expertise. A half dozen routers might be configured to
+connect several dozen departmental LANs in several buildings. All
+traffic outside the organization would typically be routed to a
+single connection to a regional network provider. </p>
+
+<p>However, the end user can install TCP/IP on a personal
+computer without any knowledge of either the corporate or
+regional network. Three pieces of information are required: </p>
+
+<ol>
+    <li>The IP address assigned to this personal computer </li>
+    <li>The part of the IP address (the subnet mask) that
+        distinguishes other machines on the same LAN (messages
+        can be sent to them directly) from machines in other
+        departments or elsewhere in the world (which are sent to
+        a router machine) </li>
+    <li>The IP address of the router machine that connects this
+        LAN to the rest of the world. </li>
+</ol>
+
+<p>In the case of the PCLT server, the IP address is
+130.132.59.234. Since the first three bytes designate this
+department, a "subnet mask" is defined as 255.255.255.0
+(255 is the largest byte value and represents the number with all
+bits turned on). It is a Yale convention (which we recommend to
+everyone) that the router for each department have station number
+1 within the department network. Thus the PCLT router is
+130.132.59.1. Thus the PCLT server is configured with the values:
+</p>
+
+<ul>
+    <li>My IP address: 130.132.59.234 </li>
+    <li>Subnet mask: 255.255.255.0 </li>
+    <li>Default router: 130.132.59.1 </li>
+</ul>
+
+<p>The subnet mask tells the server that any other machine with
+an IP address beginning 130.132.59.* is on the same department
+LAN, so messages are sent to it directly. Any IP address
+beginning with a different value is accessed indirectly by
+sending the message through the router at 130.132.59.1 (which is
+on the departmental LAN). </p>
+
+<p>Additional information is available in self-study courses from
+SRA (1-800-SRA-1277) </p>
+
+<ul>
+    <li>TCP/IP [34610] </li>
+</ul>
+<!-- SpHyDir Ignore -->
+<p><a href="http://pclt.cis.yale.edu/pclt/copyrite.htm">Copyright 1995 PCLT</a> -- <i>Introduction
+to TCP/IP </i>-- <a href="http://pclt.cis.yale.edu/pclt/AUTHOR.HTM">H. Gilbert </a></p>
+
+<p>This document generated by <a href="http://pclt.cis.yale.edu/pclt/sphydir/sphydir.htm">SpHyDir</a>
+another fine product of <a href="http://pclt.cis.yale.edu/pclt/default.htm">PC Lube and Tune</a>.</p>
+<!-- SpHyDir -->
+</body></html>

@@ -1,0 +1,385 @@
+
+<!-- saved from url=(0078)http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>BSD Sockets:  A Quick And Dirty Primer</title>
+
+<script type="text/javascript" src="chrome-extension://bfbmjmiodbnnpllbbbfblcplfjjepjdn/js/injected.js"></script><style type="text/css"></style></head><body><h1>BSD Sockets: A Quick And Dirty Primer</h1>
+
+Jim Frost<br>
+Software Tool &amp; Die<br>
+Copyright (c) 1988, 1994 Jim Frost<br>
+All Rights Reserved<br>
+Last changed November 4, 1994<br>
+
+
+<p>
+</p><hr>
+
+<h2>Table Of Contents</h2>
+<ul>
+  <li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Introduction">Introduction</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Analogy">The Analogy (or: What is a socket, anyway?)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Establish">Installing Your New Phone (or: How to listen
+for socket connections)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Connect">Dialing (or: How to call a socket)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#IO">Conversation (or: How to talk between sockets)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Closing">Hanging Up (or: What to do when you're done
+with a socket)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Byte_order">Speaking The Language (or: Byte-order
+is important)</a>
+  </li><li><a href="http://cis-linux1.temple.edu/~giorgio/old/cis307s96/readings/docs/sockets.html#Summary">The Future Is In Your Hands (or: What to do now)</a>
+</li></ul>
+
+<p>
+</p><hr>
+
+<h2><a name="Introduction">
+Introduction
+</a></h2>
+
+<p>As you delve into the mysteries of UNIX, you find more and more
+things that are difficult to understand immediately.  One of these
+things, at least for most people, is the BSD socket concept.  This is
+a short tutorial that explains what they are, how they work, and gives
+sample code showing how to use them.
+
+</p><h2><a name="Analogy">
+The Analogy (or: What is a socket, anyway?)
+</a></h2>
+
+<p>The <em>socket</em> is the BSD method for accomplishing interprocess
+communication (IPC).  What this means is a socket is used to allow one
+process to speak to another, very much like the telephone is used to
+allow one person to speak to another.
+
+</p><p>The telephone analogy is a very good one, and will be used
+repeatedly to describe socket behavior.
+
+</p><h2><a name="Establish">
+Installing Your New Phone (or: How to listen for socket connections)
+</a></h2>
+
+<p>In order for a person to receive telephone calls, he must first
+have a telephone installed.  Likewise you must create a socket to
+listen for connections.  This process involves several steps.  First
+you must make a new socket, which is similar to having a telephone
+line installed.  The <code>socket()</code> command is used to do this.
+
+</p><p>Since sockets can have several types, you must
+specify what type of socket you want when you create one.  One option
+that you have is the addressing format of a socket.  Just as the mail
+service uses a different scheme to deliver mail than the telephone
+company uses to complete calls, so can sockets differ.  The two most
+common addressing schemes are <strong>AF_UNIX</strong> and
+<strong>IAF_INET</strong>.  <strong>AF_UNIX</strong> addressing uses
+UNIX pathnames to identify sockets; these sockets are very useful for
+IPC between processes on the same machine.  <strong>AF_INET</strong>
+addressing uses Internet addresses which are four-byte numbers usually
+written as four decimal numbers separated by periods (such as
+192.9.200.10).  In addition to the machine address, there is also a
+port number which allows more than one <strong>AF_INET</strong> socket
+on each machine.  <strong>AF_INET</strong> addresses are what we will
+deal with here, as they are the most useful and widely used.
+
+</p><p>Another option which you must supply when creating a socket is the
+type of socket.  The two most common types are
+<strong>SOCK_STREAM</strong> and <strong>SOCK_DGRAM</strong>.
+<strong>SOCK_STREAM</strong> indicates that data will come across the
+socket as a stream of characters, while <strong>SOCK_DGRAM</strong>
+indicates that data will come in bunches (called <em>datagrams</em>).
+We will be dealing with <strong>SOCK_STREAM</strong> sockets, which
+are the most common and easiest to use.
+
+</p><p>After creating a socket, we must give the socket an address to
+listen to, just as you get a telephone number so that you can receive
+calls.  The <code>bind()</code> function is used to do this (it binds a
+socket to an address, hence the name).
+
+</p><p>SOCK_STREAM type sockets have the ability to queue incoming
+connection requests, which is a lot like having "call waiting" for
+your telephone.  If you are busy handling a connection, the connection
+request will wait until you can deal with it.  The
+<code>listen()</code> function is used to set the maximum number of
+requests (up to a maximum of five, usually) that will be queued before
+requests start being denied.  While it is not necessary to use the
+<code>listen()</code> function, it's good practice.
+
+</p><p>The following function shows how to use the <code>socket()</code>,
+<code>bind()</code>, and <code>listen()</code> functions to establish
+a socket which can accept calls:
+
+</p><p>
+</p><listing>/* code to establish a socket; originally from bzs@bu-cs.bu.edu
+ */
+
+int establish(unsigned short portnum)
+{ char   myname[MAXHOSTNAME+1];
+  int    s;
+  struct sockaddr_in sa;
+  struct hostent *hp;
+
+  memset(&amp;sa, 0, sizeof(struct sockaddr_in)); /* clear our address */
+  gethostname(myname, MAXHOSTNAME);           /* who are we? */
+  hp= gethostbyname(myname);                  /* get our address info */
+  if (hp == NULL)                             /* we don't exist !? */
+    return(-1);
+  sa.sin_family= hp-&gt;h_addrtype;              /* this is our host address */
+  sa.sin_port= htons(portnum);                /* this is our port number */
+  if ((s= socket(AF_INET, SOCK_STREAM, 0)) &lt; 0) /* create socket */
+    return(-1);
+  if (bind(s,&amp;sa,sizeof(struct sockaddr_in)) &lt; 0) {
+    close(s);
+    return(-1);                               /* bind address to socket */
+  }
+  listen(s, 3);                               /* max # of queued connects */
+  return(s);
+}
+</listing>
+
+<p> After you create a socket to get calls, you must wait for calls to
+that socket.  The <code>accept()</code> function is used to do this.
+Calling <code>accept()</code> is analogous to picking up the telephone
+if it's ringing.  <code>Accept()</code> returns a new socket which is
+connected to the caller.
+
+</p><p>The following function can be used to accept a connection on a socket
+that has been created using the establish() function above:
+
+</p><p>
+</p><listing>/* wait for a connection to occur on a socket created with establish()
+ */
+int get_connection(int s)
+{ int t;                  /* socket of connection */
+
+  if ((t = accept(s,NULL,NULL)) &lt; 0)   /* accept connection if there is one */
+    return(-1);
+  return(t);
+}
+</listing>
+
+<p>Unlike with the telephone, you may still accept calls while
+processing previous connections.  For this reason you usually fork off
+jobs to handle each connection.  The following code shows how to use
+<code>establish()</code> and <code>get_connection()</code> to allow
+multiple connections to be dealt with:
+
+</p><p>
+</p><listing>#include &lt;errno.h&gt;       /* obligatory includes */
+#include &lt;signal.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/socket.h&gt;
+#include &lt;sys/wait.h&gt;
+#include &lt;netinet/in.h&gt;
+#include &lt;netdb.h&gt;
+
+#define PORTNUM 50000 /* random port number, we need something */
+
+void fireman(void);
+void do_something(int);
+
+main()
+{ int s, t;
+
+  if ((s= establish(PORTNUM)) &lt; 0) {  /* plug in the phone */
+    perror("establish");
+    exit(1);
+  }
+
+  signal(SIGCHLD, fireman);           /* this eliminates zombies */
+
+  for (;;) {                          /* loop for phone calls */
+    if ((t= get_connection(s)) &lt; 0) { /* get a connection */
+      if (errno == EINTR)             /* EINTR might happen on accept(), */
+        continue;                     /* try again */
+      perror("accept");               /* bad */
+      exit(1);
+    }
+    switch(fork()) {                  /* try to handle connection */
+    case -1 :                         /* bad news.  scream and die */
+      perror("fork");
+      close(s);
+      close(t);
+      exit(1);
+    case 0 :                          /* we're the child, do something */
+      close(s);
+      do_something(t);
+      exit(0);
+    default :                         /* we're the parent so look for */
+      close(t);                       /* another connection */
+      continue;
+    }
+  }
+}
+
+/* as children die we should get catch their returns or else we get
+ * zombies, A Bad Thing.  fireman() catches falling children.
+ */
+void fireman(void)
+{
+  while (waitpid(-1, NULL, WNOHANG) &gt; 0)
+    ;
+}
+
+/* this is the function that plays with the socket.  it will be called
+ * after getting a connection.
+ */
+void do_something(int s)
+{
+  /* do your thing with the socket here
+      :
+      :
+   */
+}
+</listing>
+
+<h2><a name="Connect">
+Dialing (or: How to call a socket)
+</a></h2>
+
+<p>You now know how to create a socket that will accept incoming
+calls.  So how do you call it?  As with the telephone, you must first
+have the phone before using it to call.  You use the
+<code>socket()</code> function to do this, exactly as you establish a
+socket to listen to.
+
+</p><p>After getting a socket to make the call with, and giving it an
+address, you use the <code>connect()</code> function to try to connect
+to a listening socket.  The following function calls a particular port
+number on a particular host:
+
+</p><p>
+</p><listing>int call_socket(char *hostname, unsigned short portnum)
+{ struct sockaddr_in sa;
+  struct hostent     *hp;
+  int a, s;
+
+  if ((hp= gethostbyname(hostname)) == NULL) { /* do we know the host's */
+    errno= ECONNREFUSED;                       /* address? */
+    return(-1);                                /* no */
+  }
+
+  memset(&amp;sa,0,sizeof(sa));
+  memcpy((char *)&amp;sa.sin_addr,hp-&gt;h_addr,hp-&gt;h_length); /* set address */
+  sa.sin_family= hp-&gt;h_addrtype;
+  sa.sin_port= htons((u_short)portnum);
+
+  if ((s= socket(hp-&gt;h_addrtype,SOCK_STREAM,0)) &lt; 0)   /* get socket */
+    return(-1);
+  if (connect(s,&amp;sa,sizeof sa) &lt; 0) {                  /* connect */
+    close(s);
+    return(-1);
+  }
+  return(s);
+}
+</listing>
+
+<p>This function returns a connected socket through which data can
+flow.
+
+</p><h2><a name="IO">
+Conversation (or: How to talk between sockets)
+</a></h2>
+
+<p> Now that you have a connection between sockets you want to send
+data between them.  The <code>read()</code> and <code>write()</code>
+functions are used to do this, just as they are for normal files.
+There is only one major difference between socket reading and writing
+and file reading and writing: you don't usually get back the same
+number of characters that you asked for, so you must loop until you
+have read the number of characters that you want.  A simple function
+to read a given number of characters into a buffer is:
+
+</p><p>
+</p><listing>int read_data(int s,     /* connected socket */
+              char *buf, /* pointer to the buffer */
+              int n      /* number of characters (bytes) we want */
+             )
+{ int bcount; /* counts bytes read */
+  int br;     /* bytes read this pass */
+
+  bcount= 0;
+  br= 0;
+  while (bcount &lt; n) {             /* loop until full buffer */
+    if ((br= read(s,buf,n-bcount)) &gt; 0) {
+      bcount += br;                /* increment byte counter */
+      buf += br;                   /* move buffer ptr for next read */
+    }
+    else if (br &lt; 0)               /* signal an error to the caller */
+      return(-1);
+  }
+  return(bcount);
+}
+</listing>
+
+<p> A very similar function should be used to write data; we leave
+that function as an exercise to the reader.
+
+</p><h2><a name="Closing">
+Hanging Up (or: What to do when you're done with a socket)
+</a></h2>
+
+<p>Just as you hang up when you're through speaking to someone over
+the telephone, so must you close a connection between sockets.  The
+normal <code>close()</code> function is used to close each end of a
+socket connection.  If one end of a socket is closed and the other
+tries to write to its end, the write will return an error.
+
+</p><h2><a name="Byte_order">
+Speaking The Language (or: Byte order is important)
+</a></h2>
+
+<p>Now that you can talk between machines, you have to be careful what
+you say.  Many machines use differing dialects, such as ASCII versus
+(yech) EBCDIC.  More commonly there are byte-order problems.  Unless
+you always pass text, you'll run up against the byte-order problem.
+Luckily people have already figured out what to do about it.
+
+</p><p>Once upon a time in the dark ages someone decided which byte order
+was "right".  Now there exist functions that convert one to the other
+if necessary.  Some of these functions are <code>htons()</code> (host
+to network short integer), <code>ntohs()</code> (network to host short
+integer), <code>htonl()</code> (host to network long integer), and
+<code>ntohl()</code> (network to host long integer).  Before sending
+an integer through a socket, you should first massage it with the
+<code>htonl()</code> function:
+
+</p><p>
+</p><listing>i= htonl(i);
+write_data(s, &amp;i, sizeof(i));
+</listing>
+
+<p>and after reading data you should convert it back with
+<code>ntohl()</code>:
+
+</p><p>
+</p><listing>read_data(s, &amp;i, sizeof(i));
+i= ntohl(i);
+</listing>
+
+<p>If you keep in the habit of using these functions you'll be less
+likely to goof it up in those circumstances where it is necessary.
+
+</p><h2><a name="Summary">
+The Future Is In Your Hands (or: What to do now)
+</a></h2>
+
+<p>Using just what's been discussed here, you should be able to build
+your own programs that communicate with sockets.  As with all new
+things, however, it would be a good idea to look at what's already
+been done.  While there are not a lot of books describing BSD sockets,
+one good reference is <cite>Unix Network Programming</cite> by
+W. Richard Stevens (Prentice-Hall 1990, ISBN 0-13-949876-1).  In
+addition, you should look at some of the many public-domain
+applications which make use of sockets, since real applications are
+the best teachers.  One such application is available by anonymous ftp
+from <strong>ftp.std.com</strong> in
+<strong>/src/network/msend.1.2.tar.gz</strong>.
+
+</p><p>Beware that the examples given here leave out a lot of error
+checking which should be used in a real application.  You should check
+the manual pages for each of the functions discussed here for further
+information.  If you have specific questions regarding sockets, please
+feel free to ask me at email address <strong>jimf@world.std.com</strong>.
+</p></body></html>
